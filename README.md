@@ -12,7 +12,8 @@
 
 A lighter version (for servers in my case) is available in the branch [`server-version`](https://github.com/GrimalDev/nvim-config/tree/server-version)
 
-- There are still the lsp in this config
+- There are no lsp in this config
+- There is still text formatting
 
 > [!NOTE]
 >
