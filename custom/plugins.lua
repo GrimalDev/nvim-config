@@ -296,28 +296,6 @@ local plugins = {
     },
   },
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup {
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-        filetypes = {
-          yaml = true,
-          markdown = true,
-        },
-      }
-    end,
-    -- opts = overrides.copilot,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
-  {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
   },
@@ -342,22 +320,6 @@ local plugins = {
     config = function()
       require("inc_rename").setup()
     end,
-  },
-  {
-    "pwntester/octo.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      -- OR 'ibhagwan/fzf-lua',
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = overrides.octo,
-    lazy = false,
-  },
-  {
-    "coffebar/transfer.nvim",
-    cmd = { "TransferInit", "DiffRemote", "TransferUpload", "TransferDownload", "TransferDirDiff", "TransferRepeat" },
-    opts = {},
   },
   {
     "nvim-pack/nvim-spectre",
@@ -478,23 +440,6 @@ local plugins = {
       end
 
       vim.cmd("verbose Dotenv" .. envFile)
-    end,
-  },
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
-      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true }, -- Optional
-    },
-    cmd = {
-      "DBUI",
-      "DBUIToggle",
-      "DBUIAddConnection",
-      "DBUIFindBuffer",
-    },
-    init = function()
-      vim.g.db_ui_use_nerd_fonts = 1
-      vim.g.db_ui_auto_execute_table_helpers = 1
     end,
   },
   {
@@ -642,93 +587,6 @@ local plugins = {
   --     vim.cmd.colorscheme "everforest"
   --   end,
   -- },
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    version = false, -- set this if you want to always pull the latest change
-    opts = overrides.avante,
-    build = "make",
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
-    keys = function(_, keys)
-      local opts =
-        require("lazy.core.plugin").values(require("lazy.core.config").spec.plugins["avante.nvim"], "opts", false)
-
-      local mappings = {
-        {
-          opts.mappings.ask,
-          function()
-            require("avante.api").ask()
-          end,
-          desc = "avante AI: ask",
-          mode = { "n", "v" },
-        },
-        {
-          opts.mappings.refresh,
-          function()
-            require("avante.api").refresh()
-          end,
-          desc = "avante AI: refresh",
-          mode = "v",
-        },
-        {
-          opts.mappings.edit,
-          function()
-            require("avante.api").edit()
-          end,
-          desc = "avante AI: edit",
-          mode = { "n", "v" },
-        },
-      }
-      mappings = vim.tbl_filter(function(m)
-        return m[1] and #m[1] > 0
-      end, mappings)
-      return vim.list_extend(mappings, keys)
-    end,
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-
-    dependencies = {
-      {
-        "mfussenegger/nvim-dap",
-      },
-      "nvim-neotest/nvim-nio",
-    },
-    init = overrides.dap,
-  },
 }
 
 return plugins

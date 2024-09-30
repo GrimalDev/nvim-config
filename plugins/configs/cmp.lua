@@ -96,22 +96,6 @@ local options = {
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-g>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    -- use enter as mapping to confirm if the selection is anything other than the copilot cmp
-    ["<CR>"] = cmp.mapping(function(fallback)
-      if cmp.visible() and cmp.core.view:get_selected_entry().source.name ~= "copilot" then
-        cmp.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        }
-      elseif require("luasnip").expand_or_jumpable() then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.confirm {
@@ -161,8 +145,6 @@ local options = {
     -- }),
   },
   sources = {
-    -- Copilot Source
-    { name = "copilot", group_index = 2 },
     { name = "nvim_lsp", group_index = 2 },
     { name = "luasnip", group_index = 2 },
     { name = "buffer", group_index = 2 },
@@ -173,8 +155,6 @@ local options = {
   sorting = {
     priority_weight = 2,
     comparators = {
-      require("copilot_cmp.comparators").prioritize,
-
       -- Below is the default comparitor list and order for nvim-cmp
       cmp.config.compare.offset,
       -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
@@ -186,8 +166,6 @@ local options = {
       cmp.config.compare.sort_text,
       cmp.config.compare.length,
       cmp.config.compare.order,
-      -- require("copilot_cmp.comparators").prioritize,
-      -- require("copilot_cmp.comparators").score,
     },
   },
 }
