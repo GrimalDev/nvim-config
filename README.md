@@ -8,9 +8,9 @@
 - In neovim make the update sequence `<space>uu`
 - Follow the errors to install the commands needed, the lsp with `:Mason` and the all the fuzzy tools
 
-# Ligther version
+# Lighter version
 
-A ligther version (for servers in my case) is available in the branch [`server-version`](https://github.com/GrimalDev/nvim-config/tree/server-version)
+A lighter version (for servers in my case) is available in the branch [`server-version`](https://github.com/GrimalDev/nvim-config/tree/server-version)
 
 - There are still the lsp in this config
 
