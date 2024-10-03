@@ -1,4 +1,5 @@
 #[NvChad](https://github.com/NvChad/NvChad) based NVim config
+
 <a href="https://dotfyle.com/GrimalDev/nvim-config-custom"><img src="https://dotfyle.com/GrimalDev/nvim-config-custom/badges/plugins?style=for-the-badge" /></a>
 
 # Install
