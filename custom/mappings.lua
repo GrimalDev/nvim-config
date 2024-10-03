@@ -423,9 +423,9 @@ M.dap = {
     ["<leader>dd"] = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint" },
     ["<leader>dc"] = { "<cmd>lua require'dapui'.close()<CR>", "close dapui" },
     ["<leader>dm"] = { "<cmd>DapContinue<CR>", "DAP continue" },
-    ["C-<down>"] = { "<cmd>DapStepInto<CR>", "DAP stepInto" },
+    ["<leader>dj"] = { "<cmd>DapStepInto<CR>", "DAP stepInto" },
     ["<leader>dk"] = { "<cmd>DapStepOut<CR>", "DAP Step Out" },
-    ["C-<right>"] = { "<cmd>DapStepOver<CR>", "DAP Step Over" },
+    ["<leader>dl"] = { "<cmd>DapStepOver<CR>", "DAP Step Over" },
 
     ["<leader>da"] = { "<cmd>lua require('dapui').elements.watches.add()<CR>", "DAP watcher add" },
     ["<leader>dr"] = { "<cmd>lua require('dapui').elements.watches.remove()<CR>", "DAP watcher remove" },
