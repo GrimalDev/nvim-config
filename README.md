@@ -8,6 +8,14 @@
 >
 > This configuration utilises the [NvChad](https://github.com/NvChad/NvChad) framework
 
+## How it looks
+
+- [Everforest](https://github.com/sainnhe/everforest) theme
+- Partially Transparent Background
+
+![image](https://github.com/user-attachments/assets/7958dba5-4f9d-49bd-8456-6a50ccf9d23f)
+![image](https://github.com/user-attachments/assets/cdd21840-ff6e-4641-ade3-07150ebb7785)
+
 ## Install Instructions
 
 > Install requires Neovim 0.9+. Always review the code before installing a configuration.
