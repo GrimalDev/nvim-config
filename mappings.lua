@@ -40,6 +40,8 @@ map(
   { desc = "to next to next quotation mark" }
 )
 map({ "o", "x" }, "'", '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>', { desc = "inner any quote" })
+map({ "o", "x" }, "[", '<cmd>lua require("various-textobjs").anyBracket("inner")<CR>', { desc = "inner any bracket" })
+map({ "v" }, "r", "r")
 -- END --
 --
 
@@ -108,6 +110,13 @@ s.general = {
     { "<A-s>", "<cmd> :lua require('harpoon.ui').nav_file(3) <CR>", { desc = "Harpoon switch 3" } },
     { "<A-a>", "<cmd> :lua require('harpoon.ui').nav_file(4) <CR>", { desc = "Harpoon switch 4" } },
     { "<C-s>", "<cmd> w <CR>", { desc = "Save file" } },
+    {
+      "<leader>ra",
+      function()
+        require("nvchad.renamer").open()
+      end,
+      { desc = "LSP rename" },
+    },
 
     -- {"<C-g>", "<cmd> :Copilot suggestion accept <CR>", { desc = "Acccept Copilot suggestion" } },
   },
@@ -181,7 +190,12 @@ s.general = {
               vim.notify("Running " .. filename)
 
               -- Run the file in a terminal using nvterm
-              require("nvterm.terminal").send("bash " .. filename, "horizontal")
+              require("nvchad.term").new {
+                pos = "bo sp",
+                size = 0.3,
+                id = "Cpp executor",
+                cmd = "bash " .. filename,
+              }
             end
 
             -- Bind custom action to Enter key

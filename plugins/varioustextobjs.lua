@@ -2,7 +2,9 @@ return {
   "chrisgrieser/nvim-various-textobjs",
   lazy = false,
   opts = {
-    useDefaultKeymaps = true,
-    disabledKeymaps = { "an", "in", "aN", "iN", "n" },
+    keymaps = {
+      useDefaults = true,
+      disabledDefaults = { "an", "in", "aN", "iN", "n" },
+    },
   },
 }
