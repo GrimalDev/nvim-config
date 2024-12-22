@@ -146,6 +146,9 @@ M.nvdash = {
 }
 
 vim.opt.relativenumber = true
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.o.undofile = true
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "dbout",
   callback = function()

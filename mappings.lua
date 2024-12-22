@@ -64,32 +64,57 @@ s.text = {
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR> gv=gv")
 vim.keymap.set("v", "<C-k>", ":m '<-2<CR> gv=gv")
 
--- s.harpoon = {
---   n = {
---     {"<leader>ma", "<cmd> :lua require('harpoon.mark').replace_file(4) <CR>", { desc = "replace harpoon 4" }},
---     {"<leader>ms", "<cmd> :lua require('harpoon.mark').replace_file(3) <CR>", { desc = "replace harpoon 3" }},
---     {"<leader>md", "<cmd> :lua require('harpoon.mark').replace_file(2) <CR>", { desc = "replace harpoon 2" }},
---     {"<leader>mf", "<cmd> :lua require('harpoon.mark').replace_file(1) <CR>", { desc = "replace harpoon 1" }},
---
---     {"<A-f>", "<cmd> :lua require('harpoon.ui').nav_file(1) <CR>", { desc = "Harpoon switch 1" }},
---     {"<A-d>", "<cmd> :lua require('harpoon.ui').nav_file(2) <CR>", { desc = "Harpoon switch 2" }},
---     {"<A-s>", "<cmd> :lua require('harpoon.ui').nav_file(3) <CR>", { desc = "Harpoon switch 3" }},
---     {"<A-a>", "<cmd> :lua require('harpoon.ui').nav_file(4) <CR>", { desc = "Harpoon switch 4" }},
---
---     {"<leader>aa", "<cmd> :lua require('harpoon.mark').add_file() <CR>", { desc = "add harpoon" }},
---     {"<C-e>", "<cmd> :lua require('harpoon.ui').toggle_quick_menu() <CR>", { desc = "harpoon ui" }},
---   }
--- }
---
+s.harpoon = {
+  n = {
+    { "<leader>ma", "<cmd> :lua require('harpoon'):list():replace_at(4) <CR>", { desc = "replace harpoon 4" } },
+    { "<leader>ms", "<cmd> :lua require('harpoon'):list():replace_at(3) <CR>", { desc = "replace harpoon 3" } },
+    { "<leader>md", "<cmd> :lua require('harpoon'):list():replace_at(2) <CR>", { desc = "replace harpoon 2" } },
+    { "<leader>mf", "<cmd> :lua require('harpoon'):list():replace_at(1) <CR>", { desc = "replace harpoon 1" } },
+
+    { "<A-f>", "<cmd> lua require('harpoon'):list():select(1) <CR>", { desc = "Harpoon switch 1" } },
+    { "<A-d>", "<cmd> lua require('harpoon'):list():select(2) <CR>", { desc = "Harpoon switch 2" } },
+    { "<A-s>", "<cmd> lua require('harpoon'):list():select(3) <CR>", { desc = "Harpoon switch 3" } },
+    { "<A-a>", "<cmd> lua require('harpoon'):list():select(4) <CR>", { desc = "Harpoon switch 4" } },
+
+    { "<leader>aa", "<cmd> lua require('harpoon'):list():add() <CR>", { desc = "add harpoon" } },
+    {
+      "<C-e>",
+      function()
+        local harpoon = require "harpoon"
+        local conf = require("telescope.config").values
+        local function toggle_telescope(harpoon_files)
+          local file_paths = {}
+          for _, item in ipairs(harpoon_files.items) do
+            table.insert(file_paths, item.value)
+          end
+
+          require("telescope.pickers")
+            .new({}, {
+              prompt_title = "Harpoon",
+              finder = require("telescope.finders").new_table {
+                results = file_paths,
+              },
+              previewer = conf.file_previewer {},
+              sorter = conf.generic_sorter {},
+            })
+            :find()
+        end
+        toggle_telescope(harpoon:list())
+      end,
+      { desc = "harpoon ui" },
+    },
+  },
+}
+
 s.runpoon = {
   n = {
-    { "<leader>ar", "<cmd> :lua require('runpoon.mark').add_file() <CR>", { desc = "add runpoon" } },
-    { "<C-S-e>", "<cmd> :lua require('runpoon.ui').toggle_quick_menu() <CR>", { desc = "runpoon ui" } },
+    { "<leader>ar", "<cmd> lua require('runpoon.mark').add_file() <CR>", { desc = "add runpoon" } },
+    -- { "<C-S-e>", "<cmd> lua require('runpoon.ui').toggle_quick_menu() <CR>", { desc = "runpoon ui" } },
 
-    { "<A-m>", "<cmd> :lua require('runpoon.ui').run_file(1) <CR>", { desc = "runpoon run file 1" } },
-    { "<A-,>", "<cmd> :lua require('runpoon.ui').run_file(2) <CR>", { desc = "runpoon run file 2" } },
-    { "<A-.>", "<cmd> :lua require('runpoon.ui').run_file(3) <CR>", { desc = "runpoon run file 3" } },
-    { "<A-/>", "<cmd> :lua require('runpoon.ui').run_file(4) <CR>", { desc = "runpoon run file 4" } },
+    { "<A-m>", "<cmd> lua require('runpoon.ui').run_file(1) <CR>", { desc = "runpoon run file 1" } },
+    { "<A-,>", "<cmd> lua require('runpoon.ui').run_file(2) <CR>", { desc = "runpoon run file 2" } },
+    { "<A-.>", "<cmd> lua require('runpoon.ui').run_file(3) <CR>", { desc = "runpoon run file 3" } },
+    { "<A-/>", "<cmd> lua require('runpoon.ui').run_file(4) <CR>", { desc = "runpoon run file 4" } },
   },
 }
 
@@ -99,6 +124,11 @@ map({ "n", "v" }, "<Leader>ct", "<Cmd>CBllline<CR>")
 map("n", "<Leader>cl", "<Cmd>CBline<CR>")
 map({ "n", "v" }, "<Leader>cm", "<Cmd>CBllbox14<CR>")
 map({ "n", "v" }, "<Leader>cd", "<Cmd>CBd<CR>")
+
+map({ "i", "n" }, "<F9>", "<C-w><", { desc = "Decrease width" })
+map({ "i", "n" }, "<F10>", "<C-w>>", { desc = "Increase width" })
+map({ "i", "n" }, "<F11>", "<C-w>+", { desc = "Increase height" })
+map({ "i", "n" }, "<F12>", "<C-w>-", { desc = "Decrease height" })
 -- END --
 s.general = {
   i = {
@@ -110,22 +140,11 @@ s.general = {
     { "<A-s>", "<cmd> :lua require('harpoon.ui').nav_file(3) <CR>", { desc = "Harpoon switch 3" } },
     { "<A-a>", "<cmd> :lua require('harpoon.ui').nav_file(4) <CR>", { desc = "Harpoon switch 4" } },
     { "<C-s>", "<cmd> w <CR>", { desc = "Save file" } },
-    {
-      "<leader>ra",
-      function()
-        require("nvchad.renamer").open()
-      end,
-      { desc = "LSP rename" },
-    },
 
     -- {"<C-g>", "<cmd> :Copilot suggestion accept <CR>", { desc = "Acccept Copilot suggestion" } },
   },
 
   n = {
-    { "<F9>", "<C-w><", { desc = "Decrease width" } },
-    { "<F10>", "<C-w>>", { desc = "Increase width" } },
-    { "<F11>", "<C-w>+", { desc = "Increase height" } },
-    { "<F12>", "<C-w>-", { desc = "Decrease height" } },
     { "<C-h>", "<C-w>h", { desc = "Window left" } },
     { "<C-l>", "<C-w>l", { desc = "Window right" } },
     { "<C-j>", "<C-w>j", { desc = "Window down" } },
@@ -262,6 +281,20 @@ s.general = {
     { "<leader>l", "zf", { desc = "fold" } },
     { "<leader>k", "za", { desc = "toggle fold" } },
     { "<tab>", "<C-i>", { desc = "not last position" } },
+    {
+      "<leader>ra",
+      function()
+        require("nvchad.renamer").open()
+      end,
+      { desc = "LSP rename" },
+    },
+    {
+      "<leader>ca",
+      function()
+        require("tiny-code-action").code_action()
+      end,
+      { desc = "LSP code action" },
+    },
   },
 }
 
