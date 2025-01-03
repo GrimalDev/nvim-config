@@ -435,9 +435,10 @@ s.refactoring = {
 
 s.octo = {
   n = {
-    { "<leader>gpl", "<cmd> :Octo pr list <CR><CR>", { desc = "🐙 Octo - List all pull requests" } },
-    { "<leader>gpc", "<cmd> :Octo pr create <CR>", { desc = "🐙 Octo - Create a pull request" } },
-    { "<leader>vv", "<cmd> :Octo review <CR>", { desc = "🐙 Octo - Start or resume a review" } },
+    { "<leader>gpl", "<cmd> Octo pr list <CR><CR>", { desc = "🐙 Octo - List all pull requests" } },
+    { "<leader>gpc", "<cmd> Octo pr create <CR>", { desc = "🐙 Octo - Create a pull request" } },
+    { "<leader>vv", "<cmd> Octo review <CR>", { desc = "🐙 Octo - Start or resume a review" } },
+    { "<leader>mg", "<cmd> Octo pr merge delete <CR>", { desc = "🐙 Octo - Merge a pr and delete branch" } },
   },
 }
 
