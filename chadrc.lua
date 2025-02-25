@@ -179,4 +179,19 @@ if g.neovide then
   vim.g.neovide_background_color = "#1E1E2E" .. alpha()
 end
 
+vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "BufWinEnter" }, {
+  pattern = "<buffer>",
+
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+
+    -- print(bufnr, cur_buf())
+    if vim.bo[buf].modified then
+      vim.api.nvim_set_hl(0, "St_file_info", { fg = "#ff034f" })
+    else
+      vim.api.nvim_set_hl(0, "St_file_info", { fg = "#afffcf" })
+    end
+  end,
+})
+
 return M

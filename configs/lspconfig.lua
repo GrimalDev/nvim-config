@@ -33,6 +33,13 @@ lspconfig.pyright.setup {
   -- end
 }
 
+local get_intelephense_license = function()
+  local f = assert(io.open(os.getenv "HOME" .. "/intelephense/license.txt", "rb"))
+  local content = f:read "*a"
+  f:close()
+  return string.gsub(content, "%s+", "")
+end
+
 lspconfig.intelephense.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -40,6 +47,9 @@ lspconfig.intelephense.setup {
   root_dir = function()
     return vim.loop.cwd()
   end,
+  init_options = {
+    licenceKey = get_intelephense_license(),
+  },
 }
 
 lspconfig.html.setup {
@@ -228,4 +238,12 @@ lspconfig.volar.setup {
     },
   },
   filetypes = { "vue" },
+}
+
+lspconfig.svelte.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  root_dir = function()
+    return vim.loop.cwd()
+  end,
 }

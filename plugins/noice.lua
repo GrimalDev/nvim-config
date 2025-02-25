@@ -3,11 +3,11 @@ return {
   event = "VeryLazy",
   opts = {
     lsp = {
-      hover = { enabled = false },   -- <-- HERE!
+      hover = { enabled = false }, -- <-- HERE!
       signature = { enabled = false }, -- <-- HERE!
     },
     presets = {
-      bottom_search = true,       -- use a classic bottom cmdline for search
+      bottom_search = true, -- use a classic bottom cmdline for search
       long_message_to_split = true, -- long messages will be sent to a split
     },
   },

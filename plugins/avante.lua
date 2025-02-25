@@ -3,19 +3,7 @@ return {
   event = "VeryLazy",
   lazy = true,
   version = false, -- set this if you want to always pull the latest change
-  opts = {
-    mappings = {
-      ask = "<leader>ia",
-      edit = "<leader>ie",
-      refresh = "<leader>ir",
-    },
-    behaviour = {
-      support_paste_from_clipboard = true,
-    },
-    hints = {
-      enabled = false,
-    },
-  },
+  opts = require "configs.avante",
   build = "make",
   dependencies = {
     "stevearc/dressing.nvim",
@@ -60,6 +48,14 @@ return {
           require("avante.api").ask()
         end,
         desc = "avante AI: ask",
+        mode = { "n", "v" },
+      },
+      {
+        opts.mappings.clear,
+        function()
+          require("avante.api").clear()
+        end,
+        desc = "avante AI: clear",
         mode = { "n", "v" },
       },
       {

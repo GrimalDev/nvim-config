@@ -11,48 +11,48 @@ local s = {} -- sections definitions
 -- 	{"<C-q>", ""},
 -- }
 
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+-- map({ "n", "i", "v" }, "<C-s>", "<CMD> w <cr>")
 
 -- VARIOUS TEXT OBJECTS --
-map({ "o", "x" }, "as", '<cmd>lua require("various-textobjs"),subword("outer")<CR>', { desc = "Select a subword" })
-map({ "o", "x" }, "is", '<cmd>lua require("various-textobjs"),subword("inner")<CR>', { desc = "Select inner subword" })
-map({ "o", "x" }, "ac", '<cmd>lua require("various-textobjs"),cssColor("outer")<CR>', { desc = "Select a css color" })
+map({ "o", "x" }, "as", '<CMD>lua require("various-textobjs"),subword("outer")<CR>', { desc = "Select a subword" })
+map({ "o", "x" }, "is", '<CMD>lua require("various-textobjs"),subword("inner")<CR>', { desc = "Select inner subword" })
+map({ "o", "x" }, "ac", '<CMD>lua require("various-textobjs"),cssColor("outer")<CR>', { desc = "Select a css color" })
 map(
   { "o", "x" },
   "ic",
-  '<cmd>lua require("various-textobjs"),cssColor("inner")<CR>',
+  '<CMD>lua require("various-textobjs"),cssColor("inner")<CR>',
   { desc = "Select inner css color" }
 )
-map({ "o", "x" }, "aN", '<cmd>lua require("various-textobjs").number("outer")<CR>', { desc = "Select a number" })
-map({ "o", "x" }, "iN", '<cmd>lua require("various-textobjs").number("inner")<CR>', { desc = "Select inner number" })
+map({ "o", "x" }, "aN", '<CMD>lua require("various-textobjs").number("outer")<CR>', { desc = "Select a number" })
+map({ "o", "x" }, "iN", '<CMD>lua require("various-textobjs").number("inner")<CR>', { desc = "Select inner number" })
 map(
   { "o", "x" },
   "aa",
-  '<cmd>lua require("various-textobjs").indentation("outer", "outer")<CR>',
+  '<CMD>lua require("various-textobjs").indentation("outer", "outer")<CR>',
   { desc = "Select a indentation" }
 )
 map({ "o", "x" }, "o", "iw", { desc = "iw" })
-map({ "o", "x" }, "O", '<cmd>lua require("various-textobjs").subword("inner")<CR>', { desc = "inner subword" })
+map({ "o", "x" }, "O", '<CMD>lua require("various-textobjs").subword("inner")<CR>', { desc = "inner subword" })
 map(
   { "o", "x" },
   "q",
-  '<cmd>lua require("various-textobjs").toNextQuotations.rk()<CR>',
+  '<CMD>lua require("various-textobjs").toNextQuotations.rk()<CR>',
   { desc = "to next to next quotation mark" }
 )
-map({ "o", "x" }, "'", '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>', { desc = "inner any quote" })
-map({ "o", "x" }, "[", '<cmd>lua require("various-textobjs").anyBracket("inner")<CR>', { desc = "inner any bracket" })
+map({ "o", "x" }, "'", '<CMD>lua require("various-textobjs").anyQuote("inner")<CR>', { desc = "inner any quote" })
+map({ "o", "x" }, "[", '<CMD>lua require("various-textobjs").anyBracket("inner")<CR>', { desc = "inner any bracket" })
 map({ "v" }, "r", "r")
 -- END --
 --
 
 s.text = {
   i = {
-    { "<C-Up>", "<cmd> :m-2<CR>", { desc = " s.ve up" } },
-    { "<C-Down>", "<cmd> :m+<CR>", { desc = " s.ve down" } },
+    { "<C-Up>", "<CMD> :m-2<CR>", { desc = " s.ve up" } },
+    { "<C-Down>", "<CMD> :m+<CR>", { desc = " s.ve down" } },
   },
   n = {
-    { "<C-Up>", "<cmd> :m-2<CR>", { desc = " s.ve up" } },
-    { "<C-Down>", "<cmd> :m+<CR>", { desc = " s.ve down" } },
+    { "<C-Up>", "<CMD> :m-2<CR>", { desc = " s.ve up" } },
+    { "<C-Down>", "<CMD> :m+<CR>", { desc = " s.ve down" } },
   },
 
   c = {
@@ -66,17 +66,17 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<CR> gv=gv")
 
 s.harpoon = {
   n = {
-    { "<leader>ma", "<cmd> :lua require('harpoon'):list():replace_at(4) <CR>", { desc = "replace harpoon 4" } },
-    { "<leader>ms", "<cmd> :lua require('harpoon'):list():replace_at(3) <CR>", { desc = "replace harpoon 3" } },
-    { "<leader>md", "<cmd> :lua require('harpoon'):list():replace_at(2) <CR>", { desc = "replace harpoon 2" } },
-    { "<leader>mf", "<cmd> :lua require('harpoon'):list():replace_at(1) <CR>", { desc = "replace harpoon 1" } },
+    { "<leader>ma", "<CMD> :lua require('harpoon'):list():replace_at(4) <CR>", { desc = "replace harpoon 4" } },
+    { "<leader>ms", "<CMD> :lua require('harpoon'):list():replace_at(3) <CR>", { desc = "replace harpoon 3" } },
+    { "<leader>md", "<CMD> :lua require('harpoon'):list():replace_at(2) <CR>", { desc = "replace harpoon 2" } },
+    { "<leader>mf", "<CMD> :lua require('harpoon'):list():replace_at(1) <CR>", { desc = "replace harpoon 1" } },
 
-    { "<A-f>", "<cmd> lua require('harpoon'):list():select(1) <CR>", { desc = "Harpoon switch 1" } },
-    { "<A-d>", "<cmd> lua require('harpoon'):list():select(2) <CR>", { desc = "Harpoon switch 2" } },
-    { "<A-s>", "<cmd> lua require('harpoon'):list():select(3) <CR>", { desc = "Harpoon switch 3" } },
-    { "<A-a>", "<cmd> lua require('harpoon'):list():select(4) <CR>", { desc = "Harpoon switch 4" } },
+    { "<A-f>", "<CMD> lua require('harpoon'):list():select(1) <CR>", { desc = "Harpoon switch 1" } },
+    { "<A-d>", "<CMD> lua require('harpoon'):list():select(2) <CR>", { desc = "Harpoon switch 2" } },
+    { "<A-s>", "<CMD> lua require('harpoon'):list():select(3) <CR>", { desc = "Harpoon switch 3" } },
+    { "<A-a>", "<CMD> lua require('harpoon'):list():select(4) <CR>", { desc = "Harpoon switch 4" } },
 
-    { "<leader>aa", "<cmd> lua require('harpoon'):list():add() <CR>", { desc = "add harpoon" } },
+    { "<leader>aa", "<CMD> lua require('harpoon'):list():add() <CR>", { desc = "add harpoon" } },
     {
       "<C-e>",
       function()
@@ -108,22 +108,22 @@ s.harpoon = {
 
 s.runpoon = {
   n = {
-    { "<leader>ar", "<cmd> lua require('runpoon.mark').add_file() <CR>", { desc = "add runpoon" } },
-    -- { "<C-S-e>", "<cmd> lua require('runpoon.ui').toggle_quick_menu() <CR>", { desc = "runpoon ui" } },
+    { "<leader>ar", "<CMD> lua require('runpoon.mark').add_file() <CR>", { desc = "add runpoon" } },
+    -- { "<C-S-e>", "<CMD> lua require('runpoon.ui').toggle_quick_menu() <CR>", { desc = "runpoon ui" } },
 
-    { "<A-m>", "<cmd> lua require('runpoon.ui').run_file(1) <CR>", { desc = "runpoon run file 1" } },
-    { "<A-,>", "<cmd> lua require('runpoon.ui').run_file(2) <CR>", { desc = "runpoon run file 2" } },
-    { "<A-.>", "<cmd> lua require('runpoon.ui').run_file(3) <CR>", { desc = "runpoon run file 3" } },
-    { "<A-/>", "<cmd> lua require('runpoon.ui').run_file(4) <CR>", { desc = "runpoon run file 4" } },
+    { "<A-m>", "<CMD> lua require('runpoon.ui').run_file(1) <CR>", { desc = "runpoon run file 1" } },
+    { "<A-,>", "<CMD> lua require('runpoon.ui').run_file(2) <CR>", { desc = "runpoon run file 2" } },
+    { "<A-.>", "<CMD> lua require('runpoon.ui').run_file(3) <CR>", { desc = "runpoon run file 3" } },
+    { "<A-/>", "<CMD> lua require('runpoon.ui').run_file(4) <CR>", { desc = "runpoon run file 4" } },
   },
 }
 
 -- GENERAL --
-map({ "n", "v" }, "<Leader>cb", "<Cmd>CBccbox<CR>")
-map({ "n", "v" }, "<Leader>ct", "<Cmd>CBllline<CR>")
-map("n", "<Leader>cl", "<Cmd>CBline<CR>")
-map({ "n", "v" }, "<Leader>cm", "<Cmd>CBllbox14<CR>")
-map({ "n", "v" }, "<Leader>cd", "<Cmd>CBd<CR>")
+map({ "n", "v" }, "<Leader>cb", "<CMD>CBccbox<CR>")
+map({ "n", "v" }, "<Leader>ct", "<CMD>CBllline<CR>")
+map("n", "<Leader>cl", "<CMD>CBline<CR>")
+map({ "n", "v" }, "<Leader>cm", "<CMD>CBllbox14<CR>")
+map({ "n", "v" }, "<Leader>cd", "<CMD>CBd<CR>")
 
 map({ "i", "n" }, "<F9>", "<C-w><", { desc = "Decrease width" })
 map({ "i", "n" }, "<F10>", "<C-w>>", { desc = "Increase width" })
@@ -132,16 +132,16 @@ map({ "i", "n" }, "<F12>", "<C-w>-", { desc = "Decrease height" })
 -- END --
 s.general = {
   i = {
-    { "<A-r>", "<cmd> tabnew<CR>", { desc = "New tab" } },
+    { "<A-r>", "<CMD> tabnew<CR>", { desc = "New tab" } },
     { "<C-h>", "<Backspace>", { desc = "Backspace" } },
 
-    { "<A-f>", "<cmd> :lua require('harpoon.ui').nav_file(1) <CR>", { desc = "Harpoon switch 1" } },
-    { "<A-d>", "<cmd> :lua require('harpoon.ui').nav_file(2) <CR>", { desc = "Harpoon switch 2" } },
-    { "<A-s>", "<cmd> :lua require('harpoon.ui').nav_file(3) <CR>", { desc = "Harpoon switch 3" } },
-    { "<A-a>", "<cmd> :lua require('harpoon.ui').nav_file(4) <CR>", { desc = "Harpoon switch 4" } },
-    { "<C-s>", "<cmd> w <CR>", { desc = "Save file" } },
+    { "<A-f>", "<CMD> :lua require('harpoon.ui').nav_file(1) <CR>", { desc = "Harpoon switch 1" } },
+    { "<A-d>", "<CMD> :lua require('harpoon.ui').nav_file(2) <CR>", { desc = "Harpoon switch 2" } },
+    { "<A-s>", "<CMD> :lua require('harpoon.ui').nav_file(3) <CR>", { desc = "Harpoon switch 3" } },
+    { "<A-a>", "<CMD> :lua require('harpoon.ui').nav_file(4) <CR>", { desc = "Harpoon switch 4" } },
+    { "<C-s>", "<CMD> w <CR>", { desc = "Save file" } },
 
-    -- {"<C-g>", "<cmd> :Copilot suggestion accept <CR>", { desc = "Acccept Copilot suggestion" } },
+    -- {"<C-g>", "<CMD> :Copilot suggestion accept <CR>", { desc = "Acccept Copilot suggestion" } },
   },
 
   n = {
@@ -152,9 +152,9 @@ s.general = {
 
     { "<A-x>", "<C-w>c", { desc = "Window close" } },
 
-    { "<A-e>", "<cmd> qa<CR>", { desc = "Exit" } },
+    { "<A-e>", "<CMD> qa<CR>", { desc = "Exit" } },
 
-    { "<A-r>", "<cmd> tabnew<CR>", { desc = "New tab" } },
+    { "<A-r>", "<CMD> tabnew<CR>", { desc = "New tab" } },
 
     {
       "<right>",
@@ -171,14 +171,14 @@ s.general = {
       { desc = "Goto prev buffer" },
     },
 
-    { "<leader>uu", "<cmd> Lazy update<CR>", { desc = "Lazy upadate" } },
+    { "<leader>uu", "<CMD> Lazy update<CR>", { desc = "Lazy upadate" } },
 
-    { "<leader>mm", "<cmd>lua require('treesj').toggle()<CR>", { desc = "toogle array" } },
+    { "<leader>mm", "<CMD>lua require('treesj').toggle()<CR>", { desc = "toogle array" } },
 
     -- fd '^*.sh$' -t f -d 1 .run | fzf
     {
       "<leader>rt",
-      -- "<cmd> :Telescope find_files find_command=rg,--hidden,--ignore,--files,--glob,**/.run/*.sh layout_strategy=vertical layout_config={width=0.2,height=0.3} <CR>",
+      -- "<CMD> :Telescope find_files find_command=rg,--hidden,--ignore,--files,--glob,**/.run/*.sh layout_strategy=vertical layout_config={width=0.2,height=0.3} <CR>",
       function()
         -- Use Telescope to find .sh files in the .run directory
         require("telescope.builtin").find_files {
@@ -229,7 +229,7 @@ s.general = {
     -- Upload current buffer
     {
       "<leader>ub",
-      "<cmd> :TransferUpload <CR>",
+      "<CMD> :TransferUpload <CR>",
       { desc = "Upload current buffer file to configured CWD server" },
     },
     {
@@ -252,7 +252,7 @@ s.general = {
     },
 
     -- Generate lang docs
-    { "<leader>rd", "<cmd> :lua require('neogen').generate()<CR>", { desc = "Generate lang docs" } },
+    { "<leader>rd", "<CMD> :lua require('neogen').generate()<CR>", { desc = "Generate lang docs" } },
 
     -- {{ desc = "<Tab-l>" },
     --   function()
@@ -267,8 +267,8 @@ s.general = {
     --   "Goto prev buffer",
     -- },
 
-    { "<leader>fu", "<cmd> Telescope undo <CR> ", { desc = "Find in undo tree" } },
-    { "<leader>j", "<cmd> :normal! zz <CR>", { desc = "Center buffer on cursor" } },
+    { "<leader>fu", "<CMD> Telescope undo <CR> ", { desc = "Find in undo tree" } },
+    { "<leader>j", "<CMD> :normal! zz <CR>", { desc = "Center buffer on cursor" } },
     { "<leader>;", "A;<esc>" },
     { "<leader>,", "A,<esc>" },
     {
@@ -276,16 +276,14 @@ s.general = {
       '"1p',
       { desc = "paste what you overrode with paste" },
     },
-    { "<leader>ct", "<cmd> lua require('chatgpt') <CR><cmd> ChatGPT <CR>", { desc = "Open ChatGPT prompts" } },
+    { "<leader>ct", "<CMD> lua require('chatgpt') <CR><CMD> ChatGPT <CR>", { desc = "Open ChatGPT prompts" } },
 
     { "<leader>l", "zf", { desc = "fold" } },
     { "<leader>k", "za", { desc = "toggle fold" } },
     { "<tab>", "<C-i>", { desc = "not last position" } },
     {
       "<leader>ra",
-      function()
-        require("nvchad.renamer").open()
-      end,
+      "<CMD>lua require('renamer').rename()<CR>",
       { desc = "LSP rename" },
     },
     {
@@ -295,6 +293,11 @@ s.general = {
       end,
       { desc = "LSP code action" },
     },
+    { "<leader>x", "<CMD>Bdelete<CR>", { desc = "Close buffer" } },
+  },
+  v = {
+    { "p", '"_dP', { desc = "Override default paste" } },
+    { "<leader>p", "p", { desc = "Default paste" } },
   },
 }
 
@@ -313,7 +316,7 @@ s.comment = {
   v = {
     {
       "<C-/>",
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "<ESC><CMD>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       { desc = "Toggle comment" },
     },
   },
@@ -321,10 +324,10 @@ s.comment = {
 
 s.git = {
   n = {
-    { "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "  Git commits" } },
-    { "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "  Git branches" } },
-    { "<leader>gs", "<cmd>AdvancedGitSearch<CR>", { desc = "  Advanced Search" } },
-    { "<leader>gg", "<cmd>LazyGit<CR>", { desc = "  LazyGit" } },
+    { "<leader>gc", "<CMD>Telescope git_commits<CR>", { desc = "  Git commits" } },
+    { "<leader>gb", "<CMD>Telescope git_branches<CR>", { desc = "  Git branches" } },
+    { "<leader>gs", "<CMD>AdvancedGitSearch<CR>", { desc = "  Advanced Search" } },
+    { "<leader>gg", "<CMD>LazyGit<CR>", { desc = "  LazyGit" } },
     {
       "<leader>gl",
       function()
@@ -335,40 +338,87 @@ s.git = {
   },
 }
 
+s.flutter = {
+  n = { { "<leader>fl", "<cmd> Telescope flutter commands <CR>", { desc = "Flutter commands" } } },
+}
+
 s.telescope = {
   n = {
     -- find
-    { "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = " Find keymaps" } },
-    { "<leader>.", "<cmd> Telescope find_files <CR>", { desc = "Find files" } },
-    { "<leader>fa", "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", { desc = "Find all" } },
+    { "<leader>fk", "<CMD>Telescope keymaps<CR>", { desc = " Find keymaps" } },
     {
-      "<leader>fd",
-      "<cmd> Telescope find_files follow=true no_ignore=true hidden=true cwd=~/dotfiles_telescope/ depth=1<CR>",
-      { desc = "Find dotfiles" },
+      "<leader>fa",
+      "<CMD> Telescope find_files workspace=CWD follow=true no_ignore=true hidden=true <CR>",
+      { desc = "Find all" },
     },
-    { "<leader>o", "<cmd> FzfLua files cwd=~ <CR>", { desc = "Find all" } },
-    { "<leader>fw", "<cmd> Telescope live_grep <CR>", { desc = "Live grep" } },
-    { "<leader>b", "<cmd> Telescope buffers <CR>", { desc = "Find buffers" } },
-    { "<leader>fh", "<cmd> Telescope help_tags <CR>", { desc = "Help page" } },
-    { "<leader>fo", "<cmd> Telescope oldfiles <CR>", { desc = "Find oldfiles" } },
-    { "<leader>/", "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Find in current buffer" } },
+    {
+      "<leader>.",
+      "<CMD> Telescope find_files<CR>",
+      { desc = "Find all" },
+    },
+    {
+      "<leader>ff",
+      "<CMD> :Telescope frecency workspace=CWD <CR>",
+      { desc = "Find all with frequency order" },
+    },
+    { "<leader>o", "<CMD> FzfLua files cwd=~ <CR>", { desc = "Find all" } },
+    { "<leader>fw", "<CMD> Telescope live_grep <CR>", { desc = "Live grep" } },
+    -- { "<leader>ff", "<CMD> Telescope buffers <CR>", { desc = "Find buffers" } },
+    { "<leader>fh", "<CMD> Telescope help_tags <CR>", { desc = "Help page" } },
+    { "<leader>fo", "<CMD> Telescope oldfiles <CR>", { desc = "Find oldfiles" } },
+    { "<leader>/", "<CMD> Telescope current_buffer_fuzzy_find <CR>", { desc = "Find in current buffer" } },
 
-    { "cd", "<cmd> Telescope file_browser <CR>", { desc = "file browser in cwd" } },
+    { "cd", "<CMD> Telescope file_browser <CR>", { desc = "file browser in cwd" } },
 
-    { "<leader>fp", "<cmd> Telescope projects <CR>", { desc = "Find projects" } },
+    { "<leader>fp", "<CMD> Telescope projects <CR>", { desc = "Find projects" } },
 
     -- git
-    { "<leader>cm", "<cmd> Telescope git_commits <CR>", { desc = "Git commits" } },
-    { "<leader>gt", "<cmd> Telescope git_status <CR>", { desc = "Git status" } },
+    { "<leader>cm", "<CMD> Telescope git_commits <CR>", { desc = "Git commits" } },
+    { "<leader>gt", "<CMD> Telescope git_status <CR>", { desc = "Git status" } },
 
     -- pick a hidden term
-    { "<leader>pt", "<cmd> Telescope terms <CR>", { desc = "Pick hidden term" } },
+    { "<leader>pt", "<CMD> Telescope terms <CR>", { desc = "Pick hidden term" } },
 
     -- theme switcher
-    { "<leader>th", "<cmd> Telescope themes <CR>", { desc = "Nvchad themes" } },
+    { "<leader>th", "<CMD> Telescope themes <CR>", { desc = "Nvchad themes" } },
 
-    { "<leader>ma", "<cmd> Telescope marks <CR>", { desc = "telescope bookmarks" } },
-    { "<leader>fn", "<cmd> Telescope notify <CR>", { desc = "Find Notifications" } },
+    { "<leader>fn", "<CMD> Telescope notify <CR>", { desc = "Find Notifications" } },
+
+    --compare two files
+
+    {
+      "<leader>fc",
+      function()
+        require("telescope").extensions.diff.diff_current { hidden = true }
+      end,
+      { desc = "Compare current file with a file" },
+    },
+    {
+      "<leader>fC",
+      function()
+        require("telescope").extensions.diff.fiff_files { hidden = true }
+      end,
+      { desc = "Compare any file with any other file" },
+    },
+  },
+  v = {
+    {
+      "<leader>fw",
+      function()
+        local visual_selection = require("telescope.utils").get_visual_selection()
+        require("telescope.builtin").live_grep {
+          default_text = visual_selection,
+        }
+      end,
+      { desc = "Live grep with visual selection" },
+    },
+  },
+}
+
+s.lsp = {
+  n = {
+    { "gd", "<CMD>Telescope lsp_definitions<CR>", { desc = "Go to lsp definitions" } },
+    { "gr", "<CMD>Telescope lsp_references<CR>", { desc = "Go to lsp references" } },
   },
 }
 
@@ -384,7 +434,9 @@ s.session = {
     {
       "<leader>sn",
       function()
+        -- local session_name = vim.fn.getcwd()
         require("nvim-possession").new()
+        -- vim.api.nvim_feedkeys(session_name, "n", true)
       end,
       { desc = " New session" },
     },
@@ -407,44 +459,44 @@ s.session = {
 
 s.diagnostics = {
   n = {
-    { "<leader>t", "<cmd>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" } },
-    { "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics (Trouble)" } },
-    { "<leader>td", "<cmd>TodoTrouble keywords=TODO,FIX,FIXs.,BUG,TEST,NOTE<cr>", { desc = " Todo/Fix/Fixme" } },
+    { "<leader>t", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" } },
+    { "<leader>tb", "<CMD>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics (Trouble)" } },
+    { "<leader>td", "<CMD>TodoTrouble keywords=TODO,FIX,FIXs.,BUG,TEST,NOTE<cr>", { desc = " Todo/Fix/Fixme" } },
   },
 }
 
 s.todo = {
   n = {
-    { "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = " Todo/Fix/Fixme" } },
+    { "<leader>ft", "<CMD>TodoTelescope<cr>", { desc = " Todo/Fix/Fixme" } },
   },
 }
 
 s.refactoring = {
   x = {
-    { "<leader>re", "<cmd> :Refactor extract <CR>", { desc = "" } },
-    { "<leader>rf", "<cmd> :Refactor extract_to_file <CR>", { desc = "" } },
-    { "<leader>rv", "<cmd> :Refactor extract_var <CR>", { desc = "" } },
+    { "<leader>re", "<CMD> :Refactor extract <CR>", { desc = "" } },
+    { "<leader>rf", "<CMD> :Refactor extract_to_file <CR>", { desc = "" } },
+    { "<leader>rv", "<CMD> :Refactor extract_var <CR>", { desc = "" } },
   },
   -- n = {
-  -- {"<leader>ri", "<cmd> :Refactor inline_var <CR>", { desc = "" } },
-  -- {"<leader>rI", "<cmd> :Refactor inline_func <CR>", { desc = "" } },
-  -- {"<leader>rb", "<cmd> :Refactor extract_block <CR>", { desc = "" } },
-  -- {"<leader>rbf", "<cmd> :Refactor extract_block_to_file <CR>", { desc = "" } },
+  -- {"<leader>ri", "<CMD> :Refactor inline_var <CR>", { desc = "" } },
+  -- {"<leader>rI", "<CMD> :Refactor inline_func <CR>", { desc = "" } },
+  -- {"<leader>rb", "<CMD> :Refactor extract_block <CR>", { desc = "" } },
+  -- {"<leader>rbf", "<CMD> :Refactor extract_block_to_file <CR>", { desc = "" } },
   -- },
 }
 
 s.octo = {
   n = {
-    { "<leader>gpl", "<cmd> Octo pr list <CR><CR>", { desc = "🐙 Octo - List all pull requests" } },
-    { "<leader>gpc", "<cmd> Octo pr create <CR>", { desc = "🐙 Octo - Create a pull request" } },
-    { "<leader>vv", "<cmd> Octo review <CR>", { desc = "🐙 Octo - Start or resume a review" } },
-    { "<leader>mg", "<cmd> Octo pr merge delete <CR>", { desc = "🐙 Octo - Merge a pr and delete branch" } },
+    { "<leader>gpl", "<CMD> Octo pr list <CR><CR>", { desc = "🐙 Octo - List all pull requests" } },
+    { "<leader>gpc", "<CMD> Octo pr create <CR>", { desc = "🐙 Octo - Create a pull request" } },
+    { "<leader>vv", "<CMD> Octo review <CR>", { desc = "🐙 Octo - Start or resume a review" } },
+    { "<leader>mg", "<CMD> Octo pr merge delete <CR>", { desc = "🐙 Octo - Merge a pr and delete branch" } },
   },
 }
 
 s.muren = {
   n = {
-    { "<leader>re", "<cmd> :s.renToggle<CR>", { desc = "Toggle muren UI" } },
+    { "<leader>re", "<CMD> :s.renToggle<CR>", { desc = "Toggle muren UI" } },
   },
 }
 
@@ -452,59 +504,71 @@ s.spectre = {
   n = {
     {
       "<leader>S",
-      "<cmd>lua require('spectre').toggle()<CR>",
+      "<CMD>lua require('spectre').toggle()<CR>",
       { desc = "Toggle Spectre" },
     },
-    -- {"<leader>ss", "<cmd>lua require('spectre').open_visual({=true})<CR>", { desc = "Search current selection" } },
+    -- {"<leader>ss", "<CMD>lua require('spectre').open_visual({=true})<CR>", { desc = "Search current selection" } },
     {
       "<leader>sw",
-      "<cmd>lua require('spectre').open_visual({select_word=true})<CR>",
+      "<CMD>lua require('spectre').open_visual({select_word=true})<CR>",
       { desc = "Search current word" },
     },
     {
       "<leader>sp",
-      "<cmd>lua require('spectre').open_file_search({select_word=true})<CR>",
+      "<CMD>lua require('spectre').open_file_search({select_word=true})<CR>",
       { desc = "Search on current file" },
     },
   },
   v = {
-    { "<leader>sw", "<esc><cmd>lua require('spectre').open_visual()<CR>", { desc = "Search current word" } },
+    { "<leader>sw", "<esc><CMD>lua require('spectre').open_visual()<CR>", { desc = "Search current word" } },
   },
 }
 
 s.dadbod = {
   n = {
-    { "<leader>db", "<cmd> :DBUIToggle<CR>", { desc = "Toggle Dadbod UI" } },
+    { "<leader>db", "<CMD> :DBUIToggle<CR>", { desc = "Toggle Dadbod UI" } },
   },
 }
 
 s.executor = {
   n = {
-    { "<leader>rr", "<cmd> :lua require('executor').executor()<CR>", { desc = "Run code of current buffer" } },
-    -- {"<leader>rc", "<cmd> :lua require('executor').term_closer()<CR>", { desc = "Close all terminal windows" } },
+    { "<leader>rr", "<CMD> :lua require('executor').executor()<CR>", { desc = "Run code of current buffer" } },
+    -- {"<leader>rc", "<CMD> :lua require('executor').term_closer()<CR>", { desc = "Close all terminal windows" } },
+  },
+}
+
+s.zen = {
+  n = {
+    {
+      "<leader>z",
+      function()
+        require("zen-mode").toggle()
+      end,
+      { desc = "Zen mode" },
+    },
   },
 }
 
 s.dap = {
   n = {
-    { "<leader>dd", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" } },
-    { "<leader>dc", "<cmd>lua require'dapui'.close()<CR>", { desc = "close dapui" } },
-    { "<leader>dm", "<cmd>DapContinue<CR>", { desc = "DAP continue" } },
-    { "<down>", "<cmd>DapStepInto<CR>", { desc = "DAP stepInto" } },
-    { "<leader>dk", "<cmd>DapStepOut<CR>", { desc = "DAP Step Out" } },
-    { "<up>", "<cmd>DapStepOver<CR>", { desc = "DAP Step Over" } },
+    { "<leader>dd", "<CMD>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" } },
+    { "<leader>dc", "<CMD>lua require'dapui'.close()<CR>", { desc = "close dapui" } },
+    { "<leader>dm", "<CMD>DapContinue<CR>", { desc = "DAP continue" } },
+    { "<down>", "<CMD>DapStepInto<CR>", { desc = "DAP stepInto" } },
+    { "<leader>dk", "<CMD>DapStepOut<CR>", { desc = "DAP Step Out" } },
+    { "<up>", "<CMD>DapStepOver<CR>", { desc = "DAP Step Over" } },
 
-    { "<leader>da", "<cmd>lua require('dapui').elements.watches.add()<CR>", { desc = "DAP watcher add" } },
-    { "<leader>dr", "<cmd>lua require('dapui').elements.watches.remove()<CR>", { desc = "DAP watcher remove" } },
-    { "<leader>de", "<cmd>lua require('dapui').elements.watches.edit()<CR>", { desc = "DAP watcher edit" } },
+    { "<leader>da", "<CMD>lua require('dapui').elements.watches.add()<CR>", { desc = "DAP watcher add" } },
+    { "<leader>dr", "<CMD>lua require('dapui').elements.watches.remove()<CR>", { desc = "DAP watcher remove" } },
+    { "<leader>de", "<CMD>lua require('dapui').elements.watches.edit()<CR>", { desc = "DAP watcher edit" } },
   },
 }
 
 s.colorutils = {
   n = {
-    { "<leader>cp", "<cmd> Colortils <CR>", { desc = "Color picker" } },
-    { "<leader>cl", "<cmd> Colortils lighten <CR>", { desc = "Color lighten" } },
-    { "<leader>cd", "<cmd> Colortils darken <CR>", { desc = "Color darken" } },
+    { "<leader>cp", "<CMD> Colortils <CR>", { desc = "Color picker" } },
+    { "<leader>cl", "<CMD> Colortils lighten <CR>", { desc = "Color lighten" } },
+    { "<leader>cd", "<CMD> Colortils darken <CR>", { desc = "Color darken" } },
   },
 }
 
