@@ -1,6 +1,7 @@
 return {
   "tpope/vim-dotenv",
-  event = "VeryLazy",
+  priority = 1000, -- Highest priority to load first
+  lazy = false, -- Load during startup, not lazy-loaded
   config = function()
     local envFiles = {
       ".env.local",
@@ -20,6 +21,6 @@ return {
       return
     end
 
-    vim.cmd("verbose Dotenv" .. envFile)
+    vim.cmd("Dotenv" .. envFile)
   end,
 }
