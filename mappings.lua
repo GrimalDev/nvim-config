@@ -13,37 +13,47 @@ local s = {} -- sections definitions
 
 -- map({ "n", "i", "v" }, "<C-s>", "<CMD> w <cr>")
 
--- VARIOUS TEXT OBJECTS --
-map({ "o", "x" }, "as", '<CMD>lua require("various-textobjs"),subword("outer")<CR>', { desc = "Select a subword" })
-map({ "o", "x" }, "is", '<CMD>lua require("various-textobjs"),subword("inner")<CR>', { desc = "Select inner subword" })
-map({ "o", "x" }, "ac", '<CMD>lua require("various-textobjs"),cssColor("outer")<CR>', { desc = "Select a css color" })
-map(
-  { "o", "x" },
-  "ic",
-  '<CMD>lua require("various-textobjs"),cssColor("inner")<CR>',
-  { desc = "Select inner css color" }
-)
-map({ "o", "x" }, "aN", '<CMD>lua require("various-textobjs").number("outer")<CR>', { desc = "Select a number" })
-map({ "o", "x" }, "iN", '<CMD>lua require("various-textobjs").number("inner")<CR>', { desc = "Select inner number" })
-map(
-  { "o", "x" },
-  "aa",
-  '<CMD>lua require("various-textobjs").indentation("outer", "outer")<CR>',
-  { desc = "Select a indentation" }
-)
-map({ "o", "x" }, "o", "iw", { desc = "iw" })
-map({ "o", "x" }, "O", '<CMD>lua require("various-textobjs").subword("inner")<CR>', { desc = "inner subword" })
-map(
-  { "o", "x" },
-  "q",
-  '<CMD>lua require("various-textobjs").toNextQuotations.rk()<CR>',
-  { desc = "to next to next quotation mark" }
-)
-map({ "o", "x" }, "'", '<CMD>lua require("various-textobjs").anyQuote("inner")<CR>', { desc = "inner any quote" })
-map({ "o", "x" }, "[", '<CMD>lua require("various-textobjs").anyBracket("inner")<CR>', { desc = "inner any bracket" })
-map({ "v" }, "r", "r")
--- END --
---
+s.textobjs = {
+  o = {
+    { "as", '<CMD>lua require("various-textobjs").subword("outer")<CR>', { desc = "Select a subword" } },
+    { "is", '<CMD>lua require("various-textobjs").subword("inner")<CR>', { desc = "Select inner subword" } },
+    { "ac", '<CMD>lua require("various-textobjs").cssColor("outer")<CR>', { desc = "Select a css color" } },
+    { "ic", '<CMD>lua require("various-textobjs").cssColor("inner")<CR>', { desc = "Select inner css color" } },
+    { "aN", '<CMD>lua require("various-textobjs").number("outer")<CR>', { desc = "Select a number" } },
+    { "iN", '<CMD>lua require("various-textobjs").number("inner")<CR>', { desc = "Select inner number" } },
+    {
+      "aa",
+      '<CMD>lua require("various-textobjs").indentation("outer", "outer")<CR>',
+      { desc = "Select a indentation" },
+    },
+    { "o", "iw", { desc = "iw" } },
+    { "O", '<CMD>lua require("various-textobjs").subword("inner")<CR>', { desc = "inner subword" } },
+    { "q", '<CMD>lua require("various-textobjs").toNextQuotations.rk()<CR>', { desc = "to next quotation mark" } },
+    { "'", '<CMD>lua require("various-textobjs").anyQuote("inner")<CR>', { desc = "inner any quote" } },
+    { "[", '<CMD>lua require("various-textobjs").anyBracket("inner")<CR>', { desc = "inner any bracket" } },
+  },
+  x = {
+    { "as", '<CMD>lua require("various-textobjs").subword("outer")<CR>', { desc = "Select a subword" } },
+    { "is", '<CMD>lua require("various-textobjs").subword("inner")<CR>', { desc = "Select inner subword" } },
+    { "ac", '<CMD>lua require("various-textobjs").cssColor("outer")<CR>', { desc = "Select a css color" } },
+    { "ic", '<CMD>lua require("various-textobjs").cssColor("inner")<CR>', { desc = "Select inner css color" } },
+    { "aN", '<CMD>lua require("various-textobjs").number("outer")<CR>', { desc = "Select a number" } },
+    { "iN", '<CMD>lua require("various-textobjs").number("inner")<CR>', { desc = "Select inner number" } },
+    {
+      "aa",
+      '<CMD>lua require("various-textobjs").indentation("outer", "outer")<CR>',
+      { desc = "Select a indentation" },
+    },
+    { "o", "iw", { desc = "iw" } },
+    { "O", '<CMD>lua require("various-textobjs").subword("inner")<CR>', { desc = "inner subword" } },
+    { "q", '<CMD>lua require("various-textobjs").toNextQuotations.rk()<CR>', { desc = "to next quotation mark" } },
+    { "'", '<CMD>lua require("various-textobjs").anyQuote("inner")<CR>', { desc = "inner any quote" } },
+    { "[", '<CMD>lua require("various-textobjs").anyBracket("inner")<CR>', { desc = "inner any bracket" } },
+  },
+  v = {
+    { "r", "r", { desc = "Replace" } },
+  },
+}
 
 s.text = {
   i = {
@@ -53,6 +63,16 @@ s.text = {
   n = {
     { "<C-Up>", "<CMD> :m-2<CR>", { desc = " s.ve up" } },
     { "<C-Down>", "<CMD> :m+<CR>", { desc = " s.ve down" } },
+    {
+      "<Down>",
+      "<cmd>lua require('nvim-treesitter.textobjects.move').goto_next_start('@function.outer')<CR>",
+      { desc = "Move to next function" },
+    },
+    {
+      "<Up>",
+      "<cmd>lua require('nvim-treesitter.textobjects.move').goto_previous_start('@function.outer')<CR>",
+      { desc = "Move to previous function" },
+    },
   },
 
   c = {
@@ -60,9 +80,6 @@ s.text = {
     { "<C-j>", "<C-n>", { desc = "nav next " } },
   },
 }
-
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR> gv=gv")
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR> gv=gv")
 
 s.harpoon = {
   n = {
@@ -118,18 +135,6 @@ s.runpoon = {
   },
 }
 
--- GENERAL --
-map({ "n", "v" }, "<Leader>cb", "<CMD>CBccbox<CR>")
-map({ "n", "v" }, "<Leader>ct", "<CMD>CBllline<CR>")
-map("n", "<Leader>cl", "<CMD>CBline<CR>")
-map({ "n", "v" }, "<Leader>cm", "<CMD>CBllbox14<CR>")
-map({ "n", "v" }, "<Leader>cd", "<CMD>CBd<CR>")
-
-map({ "i", "n" }, "<F9>", "<C-w><", { desc = "Decrease width" })
-map({ "i", "n" }, "<F10>", "<C-w>>", { desc = "Increase width" })
-map({ "i", "n" }, "<F11>", "<C-w>+", { desc = "Increase height" })
-map({ "i", "n" }, "<F12>", "<C-w>-", { desc = "Decrease height" })
--- END --
 s.general = {
   i = {
     { "<A-r>", "<CMD> tabnew<CR>", { desc = "New tab" } },
@@ -140,11 +145,26 @@ s.general = {
     { "<A-s>", "<CMD> :lua require('harpoon.ui').nav_file(3) <CR>", { desc = "Harpoon switch 3" } },
     { "<A-a>", "<CMD> :lua require('harpoon.ui').nav_file(4) <CR>", { desc = "Harpoon switch 4" } },
     { "<C-s>", "<CMD> w <CR>", { desc = "Save file" } },
+    { "<A-C-s>", "<CMD> noautocmd w <CR>", { desc = "Save file without autocmd" } },
 
     -- {"<C-g>", "<CMD> :Copilot suggestion accept <CR>", { desc = "Acccept Copilot suggestion" } },
   },
 
   n = {
+    -- Comment box commands
+    { "<Leader>cb", "<CMD>CBccbox<CR>", { desc = "Comment centered box" } },
+    { "<Leader>ct", "<CMD>CBllline<CR>", { desc = "Comment line" } },
+    { "<Leader>cl", "<CMD>CBline<CR>", { desc = "Comment single line" } },
+    { "<Leader>cm", "<CMD>CBllbox14<CR>", { desc = "Comment box (medium)" } },
+    { "<Leader>cd", "<CMD>CBd<CR>", { desc = "Delete comment box" } },
+
+    -- Window resize in normal mode
+    { "<F9>", "<C-w><", { desc = "Decrease width" } },
+    { "<F10>", "<C-w>>", { desc = "Increase width" } },
+    { "<F11>", "<C-w>+", { desc = "Increase height" } },
+    { "<F12>", "<C-w>-", { desc = "Decrease height" } },
+
+    -- Window navigation
     { "<C-h>", "<C-w>h", { desc = "Window left" } },
     { "<C-l>", "<C-w>l", { desc = "Window right" } },
     { "<C-j>", "<C-w>j", { desc = "Window down" } },
@@ -278,8 +298,6 @@ s.general = {
     },
     { "<leader>ct", "<CMD> lua require('chatgpt') <CR><CMD> ChatGPT <CR>", { desc = "Open ChatGPT prompts" } },
 
-    { "<leader>l", "zf", { desc = "fold" } },
-    { "<leader>k", "za", { desc = "toggle fold" } },
     { "<tab>", "<C-i>", { desc = "not last position" } },
     {
       "<leader>ra",
@@ -296,8 +314,18 @@ s.general = {
     { "<leader>x", "<CMD>Bdelete<CR>", { desc = "Close buffer" } },
   },
   v = {
+    -- Comment box commands for visual mode
+    { "<Leader>cb", "<CMD>CBccbox<CR>", { desc = "Comment centered box" } },
+    { "<Leader>ct", "<CMD>CBllline<CR>", { desc = "Comment line" } },
+    { "<Leader>cm", "<CMD>CBllbox14<CR>", { desc = "Comment box (medium)" } },
+    { "<Leader>cd", "<CMD>CBd<CR>", { desc = "Delete comment box" } },
+
     { "p", '"_dP', { desc = "Override default paste" } },
     { "<leader>p", "p", { desc = "Default paste" } },
+
+    -- Move selected lines up and down
+    { "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" } },
+    { "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" } },
   },
 }
 
@@ -380,7 +408,13 @@ s.telescope = {
     { "<leader>pt", "<CMD> Telescope terms <CR>", { desc = "Pick hidden term" } },
 
     -- theme switcher
-    { "<leader>th", "<CMD> Telescope themes <CR>", { desc = "Nvchad themes" } },
+    {
+      "<leader>th",
+      function()
+        require("nvchad.themes").open()
+      end,
+      { desc = "Nvchad themes" },
+    },
 
     { "<leader>fn", "<CMD> Telescope notify <CR>", { desc = "Find Notifications" } },
 
@@ -400,6 +434,7 @@ s.telescope = {
       end,
       { desc = "Compare any file with any other file" },
     },
+    { "<leader><leader>", "<cmd>Telescope cmdline<cr>", { desc = "Fzf commands" } },
   },
   v = {
     {
@@ -569,6 +604,18 @@ s.colorutils = {
     { "<leader>cp", "<CMD> Colortils <CR>", { desc = "Color picker" } },
     { "<leader>cl", "<CMD> Colortils lighten <CR>", { desc = "Color lighten" } },
     { "<leader>cd", "<CMD> Colortils darken <CR>", { desc = "Color darken" } },
+  },
+}
+
+s.fold = {
+  n = {
+    { "<leader>l", "zA", { desc = "Create fold" } },
+    { "<leader>k", "za", { desc = "Toggle fold" } },
+    { "<leader>K", "zRzz", { desc = "Open all folds" } },
+    { "<leader>L", "zM", { desc = "Close all folds" } },
+    { "<leader>h", "zMzAzz", { desc = "Close all folds but current one" } },
+    { "[", "zj", { desc = "Move to next fold", noremap = true, nowait = true } },
+    { "]", "zk", { desc = "Move to previous fold", noremap = true, nowait = true } },
   },
 }
 
