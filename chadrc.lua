@@ -27,9 +27,8 @@ M.ui = {
   --
   -- lazyload it when there are 1+ buffers
   tabufline = {
-    enabled = true,
-    lazyload = true,
-    order = { "treeOffset", "buffers", "tabs", "btns" },
+    enabled = false,
+    lazyload = false,
     modules = nil,
   },
   hl_override = {
@@ -70,34 +69,44 @@ M.ui = {
   },
 
   statusline = {
-    overriden_modules = function(modules)
-      modules[6] = (function()
-        -- local st_modules = require "nvchad_ui.statusline.vscode_colored"
-        -- Load info for harpoon
-        local function get_marked()
-          local Marked = require "harpoon.mark"
-          local filename = vim.api.nvim_buf_get_name(0)
-          local success, index = pcall(Marked.get_index_of, filename)
-          if success and index and index ~= nil then
-            return "󱡀 " .. index .. " "
-          else
-            return ""
-          end
-        end
-        -- Load info for possession
-        local function get_session()
-          -- local session = require("nvim-possession").status()
-          local session = require("nvim-possession").status()
-          if session ~= nil then
-            return "󰐃 "
-          else
-            return "󰐄 "
+    theme = "default",
+    separator_style = "default",
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "harpoon", "session", "encoding", "lsp", "cwd" },
+    modules = {
+      harpoon = function()
+        local harpoon = require "harpoon"
+        local file_path = vim.api.nvim_buf_get_name(0)
+
+        -- Get the current list (default is "default")
+        local list = harpoon:list()
+
+        -- Check if the current file is in the harpoon list
+        for i, item in ipairs(list.items) do
+          if item.value == file_path then
+            return "%#HarpoonHl#󱡀 " .. i .. " "
           end
         end
 
-        return "%#HarpoonHl#" .. get_marked() .. "%#SessionHl#" .. get_session() .. " "
-      end)()
-    end,
+        return ""
+      end,
+
+      session = function()
+        local session = require("nvim-possession").status()
+        if session ~= nil then
+          return "%#SessionHl#󰐃 "
+        else
+          return "%#SessionHl#󰐄 "
+        end
+      end,
+
+      encoding = function()
+        local encoding = vim.bo.fileencoding
+        if encoding == "" then
+          encoding = vim.o.encoding
+        end
+        return "%#EncodingHl#󰘦 " .. encoding .. " "
+      end,
+    },
   },
 }
 
@@ -149,12 +158,6 @@ vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.o.undofile = true
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "dbout",
-  callback = function()
-    vim.opt_local.foldenable = false
-  end,
-})
 
 local g = vim.g
 
@@ -193,5 +196,12 @@ vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "Bu
     end
   end,
 })
+
+-- create highlight groups for statusline
+vim.api.nvim_set_hl(0, "HarpoonHl", { fg = "#CF6377", bg = "NONE" })
+vim.api.nvim_set_hl(0, "SessionHl", { fg = "#89B35C", bg = "NONE" })
+vim.api.nvim_set_hl(0, "EncodingHl", { fg = "#69AED6", bg = "NONE" })
+
+vim.opt.foldtext = [[luaeval('HighlightedFoldtext')()]]
 
 return M
