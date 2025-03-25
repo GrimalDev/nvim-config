@@ -1,5 +1,9 @@
 return {
   "yetone/avante.nvim",
+
+  -- dir = vim.fn.expand "~/Code/Projects/avante.nvim",
+  -- dev = true,
+
   event = "VeryLazy",
   lazy = true,
   version = false, -- set this if you want to always pull the latest change
@@ -40,12 +44,13 @@ return {
   keys = function(_, keys)
     local opts =
       require("lazy.core.plugin").values(require("lazy.core.config").spec.plugins["avante.nvim"], "opts", false)
+    local avante = require "avante.api"
 
     local mappings = {
       {
         opts.mappings.ask,
         function()
-          require("avante.api").ask()
+          avante.ask()
         end,
         desc = "avante AI: ask",
         mode = { "n", "v" },
@@ -53,7 +58,7 @@ return {
       {
         opts.mappings.clear,
         function()
-          require("avante.api").clear()
+          avante.clear()
         end,
         desc = "avante AI: clear",
         mode = { "n", "v" },
@@ -61,7 +66,7 @@ return {
       {
         opts.mappings.refresh,
         function()
-          require("avante.api").refresh()
+          avante.refresh()
         end,
         desc = "avante AI: refresh",
         mode = "v",
@@ -69,7 +74,7 @@ return {
       {
         opts.mappings.edit,
         function()
-          require("avante.api").edit()
+          avante.edit()
         end,
         desc = "avante AI: edit",
         mode = { "n", "v" },
