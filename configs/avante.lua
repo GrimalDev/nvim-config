@@ -30,10 +30,10 @@ return {
       model = "deepseek-reasoner",
       disable_tools = true,
     },
-    ["claude_37_tools_think"] = {
+    ["claude_37_thinking"] = {
       __inherited_from = "claude",
       model = "claude-3-7-sonnet-latest",
-      display_name = "Claude 3.7 (Sonnet) with tools and thinking",
+      display_name = "Claude 3.7 (Sonnet) with tools",
       thinking = {
         type = "enabled",
         budget_tokens = 2048,
