@@ -71,7 +71,7 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "default",
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "harpoon", "session", "encoding", "lsp", "cwd" },
+    order = { "mode", "filepath", "file", "git", "%=", "lsp_msg", "%=", "harpoon", "session", "encoding", "lsp", "cwd" },
     modules = {
       harpoon = function()
         local harpoon = require "harpoon"
@@ -99,6 +99,20 @@ M.ui = {
         end
       end,
 
+      filepath = function()
+        local file_path = vim.fn.expand "%:."
+        local file_name = vim.fn.expand "%:t"
+        if file_path == "" then
+          return ""
+        end
+        local path = "%#FilepathSeperatorLefttHl# %#FilepathHl#󰉋 /"
+        if file_path ~= file_name then
+          file_path = string.gsub(file_path, file_name, "")
+          path = path .. file_path .. " "
+        end
+        return path .. "%#FilepathSeperatorRightHl# "
+      end,
+
       encoding = function()
         local encoding = vim.bo.fileencoding
         if encoding == "" then
@@ -109,6 +123,13 @@ M.ui = {
     },
   },
 }
+-- create highlight groups for statusline
+vim.api.nvim_set_hl(0, "HarpoonHl", { fg = "#CF6377", bg = "NONE" })
+vim.api.nvim_set_hl(0, "SessionHl", { fg = "#89B35C", bg = "NONE" })
+vim.api.nvim_set_hl(0, "FilepathHl", { bg = "#4E565C" })
+vim.api.nvim_set_hl(0, "FilepathSeperatorRightHl", { fg = "#4E565C", bg = "#3D444A" })
+vim.api.nvim_set_hl(0, "FilepathSeperatorLefttHl", { fg = "#3D444A", bg = "#4E565C" })
+vim.api.nvim_set_hl(0, "EncodingHl", { fg = "#69AED6", bg = "NONE" })
 
 M.nvdash = {
   load_on_startup = true,
@@ -196,11 +217,6 @@ vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "Bu
     end
   end,
 })
-
--- create highlight groups for statusline
-vim.api.nvim_set_hl(0, "HarpoonHl", { fg = "#CF6377", bg = "NONE" })
-vim.api.nvim_set_hl(0, "SessionHl", { fg = "#89B35C", bg = "NONE" })
-vim.api.nvim_set_hl(0, "EncodingHl", { fg = "#69AED6", bg = "NONE" })
 
 vim.opt.foldtext = [[luaeval('HighlightedFoldtext')()]]
 
