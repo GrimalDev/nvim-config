@@ -391,7 +391,7 @@ s.telescope = {
     },
     { "<leader>o", "<CMD> FzfLua files cwd=~ <CR>", { desc = "Find all" } },
     { "<leader>fw", "<CMD> Telescope live_grep <CR>", { desc = "Live grep" } },
-    -- { "<leader>ff", "<CMD> Telescope buffers <CR>", { desc = "Find buffers" } },
+    { "<leader>b", "<CMD> Telescope buffers <CR>", { desc = "Find buffers" } },
     { "<leader>fh", "<CMD> Telescope help_tags <CR>", { desc = "Help page" } },
     { "<leader>fo", "<CMD> Telescope oldfiles <CR>", { desc = "Find oldfiles" } },
     { "<leader>/", "<CMD> Telescope current_buffer_fuzzy_find <CR>", { desc = "Find in current buffer" } },
