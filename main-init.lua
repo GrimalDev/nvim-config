@@ -1,15 +1,15 @@
--- --------------------------------------------------------------------------
--- --------------------------------------------------------------------------
--- --------------------------------------------------------------------------
--- --------------------------------------------------------------------------
--- --------------------------------------------------------------------------
--- /!\ This file is intended to sit a the root of your nvim config /!\
--- Ye shall be warned
--- --------------------------------------------------------------------------
--- --------------------------------------------------------------------------
--- --------------------------------------------------------------------------
--- --------------------------------------------------------------------------
--- --------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+---/!\ This file is intended to sit a the root of your nvim config /!\
+---Ye shall be warned
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 
 function HighlightedFoldtext()
   local pos = vim.v.foldstart
@@ -67,21 +67,16 @@ vim.api.nvim_set_hl(0, "Folded", {
 })
 vim.opt.foldtext = [[luaeval('HighlightedFoldtext')()]]
 
--- In init.lua
 vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
---
--- vim.opt.foldlevelstart = 1 -- Start with first level unfolded
--- vim.opt.foldlevel = 1 -- Keep first level unfolded
+vim.opt.foldlevelstart = 99 -- Start with all folds open
 
 -- Define specific overrides
 local fold_overrides = {
-  -- lua = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
-  typescript = { method = "expr", expr = "v:lua.vim.treesitter.foldexpr()", level = 0 },
-  elixir = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
-  python = { method = "indent", level = 2 },
+  lua = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 99 },
+  -- typescript = { method = "expr", expr = "v:lua.vim.treesitter.foldexpr()", level = 0 },
+  -- elixir = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
+  -- python = { method = "indent", level = 2 },
 }
 
 -- Define blacklisted buffers where folding should be disabled
@@ -136,6 +131,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
     -- Enable folding for non-blacklisted buffers
     vim.opt_local.foldenable = true
+    -- Set foldlevel to a high value to show all folds
+    vim.opt_local.foldlevel = 99
   end,
 })
 
