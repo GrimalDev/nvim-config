@@ -16,7 +16,7 @@ return {
   claude = {
     endpoint = "https://api.anthropic.com",
     -- model = "claude-3-5-sonnet-latest",
-    model = "claude-3-5-haiku-latest",
+    model = "claude-haiku/claude-3-5-haiku-20241022",
     thinking = {
       type = "disabled",
     },
@@ -61,6 +61,22 @@ return {
       model = "claude-3-5-haiku-latest",
       display_name = "Claude 3.5 (Haiku)",
       disable_tools = true,
+    },
+    ["deepseek_coder_v2_lite_instruct_Q5_K_S"] = {
+      __inherited_from = "ollama",
+      display_name = "DeepSeek Coder V2 Lite Instruct GGUF:Q5_K_S",
+      model = "hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF:Q5_K_S",
+      disable_tools = true,
+    },
+    ["deepseek_coder_v2_lite_instruct_IQ4_XS"] = {
+      __inherited_from = "ollama",
+      display_name = "DeepSeek Coder V2 Lite Instruct GGUF:IQ4_XS",
+      model = "hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF:IQ4_XS",
+      disable_tools = true,
+      max_tokens = 512,
+      options = {
+        num_ctx = 0,
+      },
     },
   },
   file_selector = {
