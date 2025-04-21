@@ -3,18 +3,60 @@ require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
 
--- EXAMPLE
-local servers = { "html", "cssls" }
 local nvlsp = require "nvchad.configs.lspconfig"
+local on_attach = nvlsp.on_attach
+local capabilities = nvlsp.capabilities
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
+local home = os.getenv "HOME"
+if not home then
+  error "HOME environment variable is not set"
 end
+-- Ensure home is treated as a string
+home = tostring(home)
+if home:sub(-1) ~= "/" then
+  home = home .. "/"
+end
+
+-- lspconfig.lua_ls.setup {
+--   on_attach = on_attach,
+--   capabilities = nvlsp.capabilities,
+--   filetypes = { "lua" },
+--   root_dir = function(fname)
+--     return lspconfig.util.root_pattern("lua", ".git")(fname) or vim.fs.dirname(fname)
+--   end,
+--   settings = {
+--     Lua = {
+--       workspace = {
+--         library = vim.tbl_extend(
+--           "keep",
+--           -- this will probably vary depending on setup, not sure if plugins like mason even install it.
+--           { home .. ".cache/lua-language-server/meta/" },
+--           -- and runtime-directories.
+--           vim.api.nvim_get_runtime_file("", true)
+--         ),
+--       },
+--       diagnostics = {
+--         globals = { "Sbar" },
+--       },
+--     },
+--   },
+--   cmd = {
+--     "lua-language-server",
+--     "--logpath",
+--     home .. ".cache/lua-language-server/",
+--     "--metapath",
+--     home .. ".cache/lua-language-server/meta/",
+--   },
+-- }
+lspconfig.lua_ls.setup {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim", "Sbar" },
+      },
+    },
+  },
+}
 
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
@@ -45,7 +87,7 @@ lspconfig.intelephense.setup {
   capabilities = capabilities,
   filetypes = { "php" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fs.dirname(vim.api.nvim_buf_get_name(0))
   end,
   init_options = {
     licenceKey = get_intelephense_license(),
@@ -57,7 +99,7 @@ lspconfig.html.setup {
   capabilities = capabilities,
   filetypes = { "html", "php" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fn.getcwd()
   end,
 }
 
@@ -66,7 +108,7 @@ lspconfig.cssls.setup {
   capabilities = capabilities,
   filetypes = { "css" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fn.getcwd()
   end,
 }
 
@@ -105,25 +147,25 @@ lspconfig.gopls.setup {
   capabilities = capabilities,
   filetypes = { "go" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fn.getcwd()
   end,
 }
 
 lspconfig.marksman.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetype = { "markdown" },
+  filetypes = { "markdown" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fs.dirname(vim.api.nvim_buf_get_name(0))
   end,
 }
 
 lspconfig.lemminx.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetype = { "xml" },
+  filetypes = { "xml" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fs.dirname(vim.api.nvim_buf_get_name(0))
   end,
 }
 
@@ -132,7 +174,7 @@ lspconfig.htmx.setup {
   capabilities = capabilities,
   filetypes = { "html", "php" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fn.getcwd()
   end,
 }
 
@@ -141,7 +183,7 @@ lspconfig.tailwindcss.setup {
   capabilities = capabilities,
   filetypes = { "html" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fn.getcwd()
   end,
 }
 
@@ -195,7 +237,7 @@ lspconfig.somesass_ls.setup {
   capabilities = capabilities,
   filetypes = { "sass", "scss", "less" },
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fn.getcwd()
   end,
 }
 
@@ -220,7 +262,7 @@ lspconfig.nextls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fn.getcwd()
   end,
   cmd = { "nextls", "--stdio" },
   init_options = {
@@ -266,6 +308,6 @@ lspconfig.svelte.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   root_dir = function()
-    return vim.loop.cwd()
+    return vim.fn.getcwd()
   end,
 }
