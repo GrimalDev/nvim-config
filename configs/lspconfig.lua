@@ -48,15 +48,15 @@ end
 --     home .. ".cache/lua-language-server/meta/",
 --   },
 -- }
-lspconfig.lua_ls.setup {
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim", "Sbar" },
-      },
-    },
-  },
-}
+-- lspconfig.lua_ls.setup {
+--   settings = {
+--     Lua = {
+--       diagnostics = {
+--         globals = { "vim", "Sbar" },
+--       },
+--     },
+--   },
+-- }
 
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
@@ -76,7 +76,7 @@ lspconfig.pyright.setup {
 }
 
 local get_intelephense_license = function()
-  local f = assert(io.open(os.getenv "HOME" .. "/intelephense/license.txt", "rb"))
+  local f = assert(io.open(os.getenv "HOME" .. "/intelephense/licence.txt", "rb"))
   local content = f:read "*a"
   f:close()
   return string.gsub(content, "%s+", "")
@@ -87,7 +87,7 @@ lspconfig.intelephense.setup {
   capabilities = capabilities,
   filetypes = { "php" },
   root_dir = function()
-    return vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+    return vim.fn.getcwd()
   end,
   init_options = {
     licenceKey = get_intelephense_license(),
@@ -169,14 +169,14 @@ lspconfig.lemminx.setup {
   end,
 }
 
-lspconfig.htmx.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  filetypes = { "html", "php" },
-  root_dir = function()
-    return vim.fn.getcwd()
-  end,
-}
+-- lspconfig.htmx.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   filetypes = { "html", "php" },
+--   root_dir = function()
+--     return vim.fn.getcwd()
+--   end,
+-- }
 
 lspconfig.tailwindcss.setup {
   on_attach = on_attach,
@@ -291,7 +291,7 @@ lspconfig.ts_ls.setup {
     "typescript",
     "vue",
     "typescriptreact",
-    "php",
+    -- "php",
   },
 }
 
