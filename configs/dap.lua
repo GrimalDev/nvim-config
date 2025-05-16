@@ -6,16 +6,26 @@ return function()
 
   -- docker path
   local docker_path = "/var/www/html"
-  local env_docker_path = os.getenv "DOCKER_PATH"
+  local env_docker_path = os.getenv "DAP_DOCKER_PATH"
   if env_docker_path and type(env_docker_path) == "string" then
     docker_path = env_docker_path
+  end
+
+  local home = os.getenv "HOME"
+  if not home then
+    error "HOME environment variable is not set"
+  end
+  -- Ensure home is treated as a string
+  home = tostring(home)
+  if home:sub(-1) ~= "/" then
+    home = home .. "/"
   end
 
   -- PHP --
   dap.adapters.php = {
     id = "php",
     type = "executable",
-    command = vim.fn.exepath "php-debug-adapter",
+    command = "/Users/grimaldev/.local/share/nvim/mason/bin/php-debug-adapter",
     localSourceRoot = vim.fn.expand "%:p:h" .. "/",
     serverSourceRoot = vim.fn.expand "%:p:h" .. "/",
   }
@@ -52,7 +62,7 @@ return function()
     port = "44357",
     executable = {
       -- command = vim.fn.expand "/home/ewan/.local/share/nvim/mason/packages/go-debug-adapter/go-debug-adapter",
-      command = vim.fn.expand "/Users/grimaldev/.local/share/nvim/mason/packages/delve/dlv",
+      command = vim.fn.expand(home .. "/.local/share/nvim/mason/packages/delve/dlv"),
       args = { "dap", "-l", "127.0.0.1:44357" },
     },
   }
