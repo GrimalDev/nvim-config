@@ -15,23 +15,23 @@ return {
     cpp = {
       -- command(s) to excute
       "make",
-      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'Cpp executor', cmd = 'g++ % && ./a.out ' .. vim.fn.expand('%') .. ' && exit'}",
+      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'cpp executor', cmd = 'g++ % && ./a.out ' .. vim.fn.expand('%') .. ' && exit'}",
       extern = false,
     },
     go = {
-      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'Cpp executor', cmd = 'go run ' .. vim.fn.expand('%') .. ' && exit'}",
+      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'go executor', cmd = 'go run ' .. vim.fn.expand('%') .. ' && exit'}",
       extern = false,
     },
     python = {
-      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'Cpp executor', cmd = 'python3 ' .. vim.fn.expand('%') .. ' && exit'}",
+      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'python executor', cmd = 'python3 ' .. vim.fn.expand('%') .. ' && exit'}",
       extern = false,
     },
     javascript = {
-      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'Cpp executor', cmd = 'bun ' .. vim.fn.expand('%') .. ' && exit'}",
+      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'javascrip executor', cmd = 'bun ' .. vim.fn.expand('%') .. ' && exit'}",
       extern = false,
     },
     sh = {
-      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'Cpp executor', cmd = 'bash ' .. vim.fn.expand('%') .. ' && exit'}",
+      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'sh executor', cmd = 'bash ' .. vim.fn.expand('%') .. ' && exit'}",
       extern = false,
     },
     vim = {
@@ -48,7 +48,7 @@ return {
       extern = false,
     },
     php = {
-      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'Cpp executor', cmd = 'php ' .. vim.fn.expand('%') .. ' && exit'}",
+      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'php executor', cmd = 'php ' .. vim.fn.expand('%') .. ' && exit'}",
       extern = false,
     },
     dart = {
@@ -56,7 +56,7 @@ return {
       extern = false,
     },
     html = {
-      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'Cpp executor', cmd = 'live-server ' .. vim.fn.expand('%') .. ' && exit'}",
+      "lua require('nvchad.term').new { pos = 'bo sp', size = 0.3, id = 'html executor', cmd = 'live-server ' .. vim.fn.expand('%') .. ' && exit'}",
       extern = false,
     },
   },
