@@ -71,7 +71,7 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "default",
-    order = { "mode", "filepath", "file", "git", "%=", "lsp_msg", "%=", "harpoon", "session", "encoding", "lsp", "cwd" },
+    order = { "mode", "filepath", "file", "%=", "lsp_msg", "%=", "harpoon", "session", "encoding", "lsp", "cwd" },
     modules = {
       harpoon = function()
         local harpoon = require "harpoon"
@@ -91,9 +91,9 @@ M.ui = {
       end,
 
       session = function()
-        local session = require("nvim-possession").status()
-        if session ~= nil then
-          return "%#SessionHl#󰐃 "
+        local session = require("auto-session.lib").current_session_name(true)
+        if session ~= "" then
+          return "%#SessionHl#󰐃" .. session .. " "
         else
           return "%#SessionHl#󰐄 "
         end

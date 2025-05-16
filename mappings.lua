@@ -4,12 +4,16 @@ local map = vim.keymap.set
 
 local s = {} -- sections definitions
 
--- s.disabled = {
--- 	{"z", ""},
--- 	{"f", ""},
--- 	{"<C-u>", ""},
--- 	{"<C-q>", ""},
--- }
+s.disabled = {
+  n = {
+    { "<Left>", "" },
+    { "<Right>", "" },
+  },
+  i = {
+    { "<Left>", "" },
+    { "<Right>", "" },
+  },
+}
 
 -- map({ "n", "i", "v" }, "<C-s>", "<CMD> w <cr>")
 
@@ -176,20 +180,20 @@ s.general = {
 
     { "<A-r>", "<CMD> tabnew<CR>", { desc = "New tab" } },
 
-    {
-      "<right>",
-      function()
-        require("nvchad.tabufline").next()
-      end,
-      { desc = "Goto next buffer" },
-    },
-    {
-      "<left>",
-      function()
-        require("nvchad.tabufline").prev()
-      end,
-      { desc = "Goto prev buffer" },
-    },
+    -- {
+    --   "<right>",
+    --   function()
+    --     require("nvchad.tabufline").next()
+    --   end,
+    --   { desc = "Goto next buffer" },
+    -- },
+    -- {
+    --   "<left>",
+    --   function()
+    --     require("nvchad.tabufline").prev()
+    --   end,
+    --   { desc = "Goto prev buffer" },
+    -- },
 
     { "<leader>uu", "<CMD> Lazy update<CR>", { desc = "Lazy upadate" } },
 
@@ -228,7 +232,7 @@ s.general = {
               -- Notify the user which file is being run
               vim.notify("Running " .. filename)
 
-              -- Run the file in a terminal using nvterm
+              -- Run the file in a terminal using nvchad
               require("nvchad.term").new {
                 pos = "bo sp",
                 size = 0.3,
@@ -461,32 +465,24 @@ s.session = {
   n = {
     {
       "<leader>sl",
-      function()
-        require("nvim-possession").list()
-      end,
+      "<CMD>SessionSearch<CR>",
       { desc = " List session" },
     },
     {
       "<leader>sn",
-      function()
-        -- local session_name = vim.fn.getcwd()
-        require("nvim-possession").new()
-        -- vim.api.nvim_feedkeys(session_name, "n", true)
-      end,
+      "<CMD>SessionSave<CR>",
       { desc = " New session" },
     },
-    {
-      "<leader>su",
-      function()
-        require("nvim-possession").update()
-      end,
-      { desc = " Update session" },
-    },
+    -- {
+    --   "<leader>su",
+    --   function()
+    --     require("nvim-possession").update()
+    --   end,
+    --   { desc = " Update session" },
+    -- },
     {
       "<leader>sd",
-      function()
-        require("nvim-possession").delete()
-      end,
+      "<CMD>SessionDelete<CR>",
       { desc = " Delete session" },
     },
   },
