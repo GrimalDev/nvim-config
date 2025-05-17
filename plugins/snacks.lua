@@ -6,7 +6,10 @@ return {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
-    bigfile = { enabled = true },
+    bigfile = {
+      otify = true,
+      enabled = true,
+    },
     indent = {
       enabled = true,
       -- chunk = {
@@ -26,7 +29,7 @@ return {
     notifier = { enabled = true },
     -- quickfile = { enabled = true },
     scroll = {
-      enabled = true,
+      enabled = true, -- NOTE:slow everything a bit...................
       animate = {
         duration = { step = 15, total = 150 },
         easing = "linear",
@@ -37,6 +40,15 @@ return {
         duration = { step = 20, total = 50 },
         easing = "linear",
       },
+    },
+    bufdelete = {
+      enabled = true,
+    },
+    rename = {
+      enabled = true,
+    },
+    zen = {
+      enabled = true,
     },
     -- statuscolumn = { enabled = true },
     -- words = { enabled = true },
