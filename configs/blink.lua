@@ -1,4 +1,4 @@
--- NOTE: config mainly from: https://github.com/linkarzu/dotfiles-latest
+--  NOTE: config mainly from: https://github.com/linkarzu/dotfiles-latest
 
 local opts = function(_, opts)
   -- I noticed that telescope was extremeley slow and taking too long to open,
@@ -15,7 +15,7 @@ local opts = function(_, opts)
     return true
   end
 
-  -- NOTE: Merge custom sources with the existing ones from nvchad
+  --  NOTE: Merge custom sources with the existing ones from nvchad
   opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
     default = { "lsp", "path", "snippets", "buffer", "dadbod", "emoji", "dictionary", "copilot" },
     providers = {
@@ -177,6 +177,11 @@ local opts = function(_, opts)
       auto_show = true,
       window = {
         border = "single",
+      },
+    },
+    list = {
+      selection = {
+        preselect = false,
       },
     },
   }
