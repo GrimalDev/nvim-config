@@ -113,6 +113,14 @@ M.ui = {
         return path .. "%#FilepathSeperatorRightHl# "
       end,
 
+      file = function()
+        local file_name = vim.fn.expand "%:t"
+        if file_name == "" then
+          return ""
+        end
+        return "%#FilepathSeperatorLefttHl#%#FileNameHl# 󰈙 " .. file_name .. "  %#FileNameSeperatorRightHl#"
+      end,
+
       encoding = function()
         local encoding = vim.bo.fileencoding
         if encoding == "" then
@@ -127,8 +135,11 @@ M.ui = {
 vim.api.nvim_set_hl(0, "HarpoonHl", { fg = "#CF6377", bg = "NONE" })
 vim.api.nvim_set_hl(0, "SessionHl", { fg = "#89B35C", bg = "NONE" })
 vim.api.nvim_set_hl(0, "FilepathHl", { bg = "#4E565C" })
+vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#afffcf", bg = "#4E565C" })
 vim.api.nvim_set_hl(0, "FilepathSeperatorRightHl", { fg = "#4E565C", bg = "#3D444A" })
 vim.api.nvim_set_hl(0, "FilepathSeperatorLefttHl", { fg = "#3D444A", bg = "#4E565C" })
+vim.api.nvim_set_hl(0, "FileNameSeperatorRightHl", { fg = "#4E565C", bg = "#2F363C" })
+vim.api.nvim_set_hl(0, "Blank", { fg = "#2F363C" })
 vim.api.nvim_set_hl(0, "EncodingHl", { fg = "#69AED6", bg = "NONE" })
 
 M.nvdash = {
@@ -203,17 +214,17 @@ if g.neovide then
   vim.g.neovide_background_color = "#1E1E2E" .. alpha()
 end
 
-vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "BufWinEnter" }, {
-  pattern = "<buffer>",
+vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
+
+  pattern = "*",
 
   callback = function()
     local buf = vim.api.nvim_get_current_buf()
 
-    -- print(bufnr, cur_buf())
     if vim.bo[buf].modified then
-      vim.api.nvim_set_hl(0, "St_file_info", { fg = "#ff034f" })
+      vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#ff034f", bg = "#4E565C" })
     else
-      vim.api.nvim_set_hl(0, "St_file_info", { fg = "#afffcf" })
+      vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#afffcf", bg = "#4E565C" })
     end
   end,
 })
