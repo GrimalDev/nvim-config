@@ -135,7 +135,7 @@ M.ui = {
 vim.api.nvim_set_hl(0, "HarpoonHl", { fg = "#CF6377", bg = "NONE" })
 vim.api.nvim_set_hl(0, "SessionHl", { fg = "#89B35C", bg = "NONE" })
 vim.api.nvim_set_hl(0, "FilepathHl", { bg = "#4E565C" })
-vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#afffcf", bg = "#4E565C" })
+vim.api.nvim_set_hl(0, "FileNameHl", { bg = "#4E565C" })
 vim.api.nvim_set_hl(0, "FilepathSeperatorRightHl", { fg = "#4E565C", bg = "#3D444A" })
 vim.api.nvim_set_hl(0, "FilepathSeperatorLefttHl", { fg = "#3D444A", bg = "#4E565C" })
 vim.api.nvim_set_hl(0, "FileNameSeperatorRightHl", { fg = "#4E565C", bg = "#2F363C" })
@@ -224,7 +224,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
     if vim.bo[buf].modified then
       vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#ff034f", bg = "#4E565C" })
     else
-      vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#afffcf", bg = "#4E565C" })
+      vim.api.nvim_set_hl(0, "FileNameHl", { bg = "#4E565C" })
     end
   end,
 })
