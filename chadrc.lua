@@ -8,11 +8,29 @@ local M = {}
 M.base46 = {
   theme = "everforest",
 
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
-  --
+  hl_override = {
+    ["Normal"] = { bg = "NONE" },
+    ["NormalFloat"] = { bg = "NONE" },
+    -- ["LineNr"] = { fg = "orange" },
+    ["CursorLineNr"] = { fg = "vibrant_green" },
+    ["IncSearch"] = { fg = "#ffffff", bg = "#ff034f" },
+    ["Substitute"] = { fg = "black", bg = "orange" },
+    ["Search"] = { fg = "#1e1d2d", bg = "#abe9b3" },
+    ["NvimTreeNormal"] = { bg = "NONE" },
+    ["Visual"] = { bg = "#3A515D" },
+    ["@comment"] = { fg = "#717276" },
+    ["IndentBlanklineContextChar"] = { fg = "#afffcf" },
+
+    -- Diff
+    ["DiffChange"] = { fg = "NONE", bg = "NONE" },
+    ["DiffModified"] = { fg = "NONE", bg = "NONE" },
+    ["DiffText"] = { fg = "NONE", bg = "#2B9128" },
+    ["DiffAdd"] = { fg = "NONE", bg = "#2B9128" },
+    ["DiffAdded"] = { fg = "NONE", bg = "#2B9128" },
+    ["DiffDelete"] = { fg = "NONE", bg = "blue" },
+    ["DiffRemoved"] = { fg = "NONE", bg = "#B22126" },
+    ["DiffChangeDelete"] = { fg = "NONE", bg = "#B22126" },
+  },
 }
 M.ui = {
   cmp = {
@@ -30,29 +48,6 @@ M.ui = {
     enabled = false,
     lazyload = false,
     modules = nil,
-  },
-  hl_override = {
-    ["Normal"] = { bg = "NONE" },
-    ["NormalFloat"] = { bg = "NONE" },
-    ["LineNr"] = { fg = "orange" },
-    ["CursorLineNr"] = { fg = "vibrant_green" },
-    ["IncSearch"] = { fg = "#ffffff", bg = "#ff034f" },
-    ["Substitute"] = { fg = "black", bg = "orange" },
-    ["Search"] = { fg = "#1e1d2d", bg = "#abe9b3" },
-    ["NvimTreeNormal"] = { bg = "NONE" },
-    ["Visual"] = { bg = "#214283" },
-    ["@comment"] = { fg = "#717276" },
-    ["IndentBlanklineContextChar"] = { fg = "#afffcf" },
-
-    -- Diff
-    ["DiffChange"] = { fg = "NONE", bg = "NONE" },
-    ["DiffModified"] = { fg = "NONE", bg = "NONE" },
-    ["DiffText"] = { fg = "NONE", bg = "#2B9128" },
-    ["DiffAdd"] = { fg = "NONE", bg = "#2B9128" },
-    ["DiffAdded"] = { fg = "NONE", bg = "#2B9128" },
-    ["DiffDelete"] = { fg = "NONE", bg = "blue" },
-    ["DiffRemoved"] = { fg = "NONE", bg = "#B22126" },
-    ["DiffChangeDelete"] = { fg = "NONE", bg = "#B22126" },
   },
 
   term = {
@@ -103,7 +98,7 @@ M.ui = {
         local file_path = vim.fn.expand "%:."
         local file_name = vim.fn.expand "%:t"
         if file_path == "" then
-          return ""
+          return "%#FilepathSeperatorLefttHl#%#FileNameSeperatorRightHl#"
         end
         local path = "%#FilepathSeperatorLefttHl# %#FilepathHl#󰉋 /"
         if file_path ~= file_name then
@@ -214,7 +209,6 @@ if g.neovide then
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost", "TextChanged", "TextChangedI" }, {
-
   pattern = "*",
 
   callback = function()

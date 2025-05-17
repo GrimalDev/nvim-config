@@ -429,14 +429,14 @@ s.telescope = {
       function()
         require("telescope").extensions.diff.diff_current { hidden = true }
       end,
-      { desc = "Compare current file with a file" },
+      { desc = "Compare/Dif current file with a file" },
     },
     {
       "<leader>fC",
       function()
         require("telescope").extensions.diff.fiff_files { hidden = true }
       end,
-      { desc = "Compare any file with any other file" },
+      { desc = "Compare/Dif any file with any other file" },
     },
     { "<leader><leader>", "<cmd>Telescope cmdline<cr>", { desc = "Fzf commands" } },
   },
