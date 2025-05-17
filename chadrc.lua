@@ -139,7 +139,6 @@ vim.api.nvim_set_hl(0, "FileNameHl", { bg = "#4E565C" })
 vim.api.nvim_set_hl(0, "FilepathSeperatorRightHl", { fg = "#4E565C", bg = "#3D444A" })
 vim.api.nvim_set_hl(0, "FilepathSeperatorLefttHl", { fg = "#3D444A", bg = "#4E565C" })
 vim.api.nvim_set_hl(0, "FileNameSeperatorRightHl", { fg = "#4E565C", bg = "#2F363C" })
-vim.api.nvim_set_hl(0, "Blank", { fg = "#2F363C" })
 vim.api.nvim_set_hl(0, "EncodingHl", { fg = "#69AED6", bg = "NONE" })
 
 M.nvdash = {
