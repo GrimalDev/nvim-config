@@ -134,7 +134,7 @@ local opts = function(_, opts)
         module = "blink-cmp-copilot",
         -- kind = "Copilot",
         min_keyword_length = 0,
-        score_offset = 10, -- the higher the number, the higher the priority
+        score_offset = 50, -- the higher the number, the higher the priority
         async = true,
         override = {
           get_trigger_characters = function(self)
@@ -181,7 +181,7 @@ local opts = function(_, opts)
     },
     list = {
       selection = {
-        preselect = false,
+        preselect = true,
       },
     },
   }
