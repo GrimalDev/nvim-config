@@ -1,5 +1,6 @@
 return {
   "yetone/avante.nvim",
+  enabled = false,
 
   -- dir = vim.fn.expand "~/Code/Projects/avante.nvim",
   -- dev = true,

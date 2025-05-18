@@ -155,6 +155,16 @@ s.general = {
   },
 
   n = {
+    {
+      "j",
+      'v:count || mode(1)[0:1] == "no" ? "j" : "gj"',
+      { expr = true, desc = "Move down (respects wrapped lines)" },
+    },
+    {
+      "k",
+      'v:count || mode(1)[0:1] == "no" ? "k" : "gk"',
+      { expr = true, desc = "Move up (respects wrapped lines)" },
+    },
     -- Comment box commands
     { "<Leader>cb", "<CMD>CBccbox<CR>", { desc = "Comment centered box" } },
     { "<Leader>ct", "<CMD>CBllline<CR>", { desc = "Comment line" } },

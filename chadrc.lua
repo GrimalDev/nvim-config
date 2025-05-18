@@ -177,6 +177,19 @@ M.nvdash = {
     { txt = "  Themes", keys = "Spc t h", cmd = "Telescope themes" },
     { txt = "  Cheatsheets", keys = "Spc c h", cmd = "NvCheatsheet" },
     { txt = "  Search keys", keys = "Spc f k", cmd = " Find keymaps" },
+    { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
+
+    {
+      txt = function()
+        local stats = require("lazy").stats()
+        local ms = math.floor(stats.startuptime) .. " ms"
+        return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
+      end,
+      hl = "NvDashFooter",
+      no_gap = true,
+    },
+
+    { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
   },
 }
 
