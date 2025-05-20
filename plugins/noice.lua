@@ -17,6 +17,17 @@ return {
     -- OPTIONAL:
     --   `nvim-notify` is only needed, if you want to use the notification view.
     --   If not available, we use `mini` as the fallback
-    "rcarriga/nvim-notify",
+    {
+      "rcarriga/nvim-notify",
+      config = function()
+        vim.notify = require "notify"
+        require("notify").setup {
+          merge_duplicates = true,
+          stages = "fade_in_slide_out",
+          background_colour = "FloatShadow",
+          render = "wrapped-compact",
+        }
+      end,
+    },
   },
 }

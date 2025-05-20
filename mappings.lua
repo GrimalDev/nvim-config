@@ -130,7 +130,7 @@ s.harpoon = {
 s.runpoon = {
   n = {
     { "<leader>ar", "<CMD> lua require('runpoon.mark').add_file() <CR>", { desc = "add runpoon" } },
-    -- { "<C-S-e>", "<CMD> lua require('runpoon.ui').toggle_quick_menu() <CR>", { desc = "runpoon ui" } },
+    { "<tC-S-e>", "<CMD> lua require('runpoon.ui').toggle_quick_menu() <CR>", { desc = "runpoon ui" } },
 
     { "<A-m>", "<CMD> lua require('runpoon.ui').run_file(1) <CR>", { desc = "runpoon run file 1" } },
     { "<A-,>", "<CMD> lua require('runpoon.ui').run_file(2) <CR>", { desc = "runpoon run file 2" } },
@@ -430,7 +430,7 @@ s.telescope = {
       { desc = "Nvchad themes" },
     },
 
-    { "<leader>fn", "<CMD> Telescope notify <CR>", { desc = "Find Notifications" } },
+    { "<leader>fn", "<CMD> Noice telescope <CR>", { desc = "Find Notifications" } },
 
     --compare two files
 
