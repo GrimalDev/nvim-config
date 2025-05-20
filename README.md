@@ -21,10 +21,24 @@
 
 > Install requires Neovim 0.11+. Always review the code before installing a configuration.
 
-Clone the repository and install the plugins:
+Clone the nvchad starter repo into your nvim folder (~/.config/nvim)
 
 ```sh
-git clone git@github.com:GrimalDev/nvim-config ~/.config/GrimalDev/nvim-config
+
+git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+
+```
+
+Clone the repository in the lua folder (after removing the placeholder files from the nvchad starter) and install the plugins:
+
+```sh
+cd ~/.config/nvim/lua && rm -rf ./* && git clone git@github.com:GrimalDev/nvim-config .
+```
+
+Move the main-init.lua to the parent directory
+
+```sh
+mv main-init.lua ../init.lua
 ```
 
 ## Plugins
