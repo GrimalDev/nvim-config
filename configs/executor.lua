@@ -68,6 +68,5 @@ return {
     -- the command make requires the presents of a makefile in cwd, if
     -- makefile is not found, try next command in table
     make = "makefile",
-    -- term = "lua require('nvterm.terminal').new 'horizontal'",
   },
 }
