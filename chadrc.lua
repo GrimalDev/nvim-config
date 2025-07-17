@@ -19,7 +19,6 @@ M.base46 = {
     ["NvimTreeNormal"] = { bg = "NONE" },
     ["Visual"] = { bg = "#3A515D" },
     ["@comment"] = { fg = "#717276" },
-    ["IndentBlanklineContextChar"] = { fg = "#afffcf" },
 
     -- Diff
     ["DiffChange"] = { fg = "NONE", bg = "NONE" },
@@ -30,6 +29,8 @@ M.base46 = {
     ["DiffDelete"] = { fg = "NONE", bg = "blue" },
     ["DiffRemoved"] = { fg = "NONE", bg = "#B22126" },
     ["DiffChangeDelete"] = { fg = "NONE", bg = "#B22126" },
+
+    -- LSP Doc
   },
 }
 M.ui = {

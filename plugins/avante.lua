@@ -6,13 +6,11 @@ return {
   -- dev = true,
 
   event = "VeryLazy",
-  lazy = true,
   version = false, -- set this if you want to always pull the latest change
   opts = require "configs.avante",
   build = "make",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
-    "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,

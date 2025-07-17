@@ -226,7 +226,7 @@ local opts = function(_, opts)
     ["<C-u>"] = { "scroll_documentation_up", "fallback" },
     ["<C-d>"] = { "scroll_documentation_down", "fallback" },
 
-    ["<S-k>"] = { "show", "show_documentation", "hide_documentation" },
+    -- ["<S-k>"] = { "show", "show_documentation", "hide_documentation" },
     ["<C-e>"] = { "hide", "fallback" },
   }
 end

@@ -130,7 +130,7 @@ s.harpoon = {
 s.runpoon = {
   n = {
     { "<leader>ar", "<CMD> lua require('runpoon.mark').add_file() <CR>", { desc = "add runpoon" } },
-    { "<tC-S-e>", "<CMD> lua require('runpoon.ui').toggle_quick_menu() <CR>", { desc = "runpoon ui" } },
+    -- { "<C-r>", "<CMD> lua require('runpoon.ui').toggle_quick_menu() <CR>", { desc = "runpoon ui" } },
 
     { "<A-m>", "<CMD> lua require('runpoon.ui').run_file(1) <CR>", { desc = "runpoon run file 1" } },
     { "<A-,>", "<CMD> lua require('runpoon.ui').run_file(2) <CR>", { desc = "runpoon run file 2" } },
@@ -183,6 +183,10 @@ s.general = {
     { "<C-l>", "<C-w>l", { desc = "Window right" } },
     { "<C-j>", "<C-w>j", { desc = "Window down" } },
     { "<C-k>", "<C-w>k", { desc = "Window up" } },
+    -- { "<C-h>", "<cmd>NvimTmuxNavigateLeft<cr>", { desc = "Window left" } },
+    -- { "<C-l>", "<cmd>NvimTmuxNavigateRight<cr>", { desc = "Window right" } },
+    -- { "<C-j>", "<cmd>NvimTmuxNavigateDown<cr>", { desc = "Window down" } },
+    -- { "<C-k>", "<cmd>NvimTmuxNavigateUp<cr>", { desc = "Window up" } },
 
     { "<A-x>", "<C-w>c", { desc = "Window close" } },
 
@@ -209,14 +213,11 @@ s.general = {
 
     { "<leader>mm", "<CMD>lua require('treesj').toggle()<CR>", { desc = "toogle array" } },
 
-    -- fd '^*.sh$' -t f -d 1 .run | fzf
     {
       "<leader>rt",
-      -- "<CMD> :Telescope find_files find_command=rg,--hidden,--ignore,--files,--glob,**/.run/*.sh layout_strategy=vertical layout_config={width=0.2,height=0.3} <CR>",
       function()
-        -- Use Telescope to find .sh files in the .run directory
         require("telescope.builtin").find_files {
-          find_command = { "rg", "--hidden", "--ignore", "--files", "--glob", "**/.run/*.sh" },
+          find_command = { "fd", "-t", "f", ".", ".run" },
           layout_strategy = "vertical",
           layout_config = { width = 0.2, height = 0.3 },
           attach_mappings = function(prompt_bufnr, _)
@@ -236,19 +237,14 @@ s.general = {
 
               local filename = selected.value
 
-              -- Close the Telescope window
               actions.close(prompt_bufnr)
 
-              -- Notify the user which file is being run
               vim.notify("Running " .. filename)
 
-              -- Run the file in a terminal using nvchad
-              require("nvchad.term").new {
-                pos = "bo sp",
-                size = 0.3,
-                id = "Cpp executor",
-                cmd = "bash " .. filename,
-              }
+              -- Execute ile and show output in a horizontal split buffer
+              vim.cmd("split | terminal lua " .. filename)
+              vim.cmd "wincmd J" -- Move bottom
+              vim.cmd "resize 15" -- Adjust the size
             end
 
             -- Bind custom action to Enter key
@@ -284,6 +280,15 @@ s.general = {
       end,
       { desc = "Upload project" },
     },
+    {
+      "<leader>ug",
+      function()
+        for _, file in ipairs(vim.fn.systemlist "git diff --name-only") do
+          vim.cmd("TransferUpload " .. file)
+        end
+      end,
+      { desc = "Upload git changed files" },
+    },
 
     -- Generate lang docs
     { "<leader>rd", "<CMD> :lua require('neogen').generate()<CR>", { desc = "Generate lang docs" } },
@@ -301,7 +306,7 @@ s.general = {
     --   "Goto prev buffer",
     -- },
 
-    { "<leader>fu", "<CMD> Telescope undo <CR> ", { desc = "Find in undo tree" } },
+    { "<leader>fu", "<CMD> UndotreeToggle <CR> ", { desc = "Find in undo tree" } },
     { "<leader>j", "<CMD> :normal! zz <CR>", { desc = "Center buffer on cursor" } },
     { "<leader>;", "A;<esc>" },
     { "<leader>,", "A,<esc>" },
@@ -321,7 +326,7 @@ s.general = {
     {
       "<leader>ca",
       function()
-        require("tiny-code-action").code_action()
+        require("tiny-code-action").code_action {}
       end,
       { desc = "LSP code action" },
     },
@@ -531,6 +536,7 @@ s.octo = {
     { "<leader>gpl", "<CMD> Octo pr list <CR><CR>", { desc = "🐙 Octo - List all pull requests" } },
     { "<leader>gpc", "<CMD> Octo pr create <CR>", { desc = "🐙 Octo - Create a pull request" } },
     { "<leader>vv", "<CMD> Octo review <CR>", { desc = "🐙 Octo - Start or resume a review" } },
+    { "<leader>sv", "<CMD> Octo review submit <CR>", { desc = "🐙 Octo - Submit a review" } },
     { "<leader>mg", "<CMD> Octo pr merge delete <CR>", { desc = "🐙 Octo - Merge a pr and delete branch" } },
   },
 }
@@ -573,7 +579,7 @@ s.dadbod = {
 
 s.executor = {
   n = {
-    { "<leader>rr", "<CMD> :lua require('executor').executor()<CR>", { desc = "Run code of current buffer" } },
+    { "<leader>rr", "<cmd>lua require('runner').run() <CR>", { desc = "Run code of current buffer" } },
     -- {"<leader>rc", "<CMD> :lua require('executor').term_closer()<CR>", { desc = "Close all terminal windows" } },
   },
 }

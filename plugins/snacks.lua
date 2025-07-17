@@ -12,9 +12,17 @@ return {
     },
     indent = {
       enabled = true,
-      -- chunk = {
-      --   enabled = true,
-      -- },
+      hl = "SnacksIndent",
+      scope = {
+        enabled = true, -- enable highlighting the current scope
+        hl = "SnacksIndentScope", ---@type string|string[] hl group for scopes
+      },
+      chunk = {
+        enabled = false,
+        hl = "SnacksIndentChunk",
+      },
+      --
+      --k
       animate = {
         enabled = vim.fn.has "nvim-0.10" == 1,
         style = "up_down",

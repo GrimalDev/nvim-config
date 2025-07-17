@@ -16,6 +16,7 @@ return {
     dark_blue = "#0366d6",
     purple = "#6f42c1",
   },
+  mappings_disable_default = false,
   mappings = {
     pull_request = {
       checkout_pr = { lhs = "<space>po", desc = "checkout PR" },
@@ -33,8 +34,6 @@ return {
       remove_label = { lhs = "<space>ld", desc = "remove label" },
       add_comment = { lhs = "<space>ca", desc = "add comment" },
       delete_comment = { lhs = "<space>cd", desc = "delete comment" },
-      review_start = { lhs = "<space>vs", desc = "start a review for the current PR" },
-      review_resume = { lhs = "<space>vr", desc = "resume a pending review for the current PR" },
     },
     review_thread = {
       add_comment = { lhs = "<space>ca", desc = "add comment" },
