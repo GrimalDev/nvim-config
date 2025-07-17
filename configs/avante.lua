@@ -12,16 +12,9 @@ return {
     enabled = false,
   },
   -- provider = "deepseek",
-  provider = "claude_37",
+  provider = "copilot",
   mode = "legacy",
   providers = {
-    deepseek = {
-      __inherited_from = "openai",
-      api_key_name = "DEEPSEEK_API_KEY",
-      endpoint = "https://api.deepseek.com",
-      model = "deepseek-reasoner",
-      disable_tools = true,
-    },
     ["claude_37_thinking"] = {
       __inherited_from = "claude",
       model = "claude-3-7-sonnet-latest",

@@ -17,8 +17,25 @@ local opts = function(_, opts)
 
   --  NOTE: Merge custom sources with the existing ones from nvchad
   opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-    default = { "lsp", "path", "snippets", "buffer", "dadbod", "emoji", "dictionary", "copilot" },
+    default = {
+      "avante",
+      "lsp",
+      "path",
+      "snippets",
+      "buffer",
+      "dadbod",
+      "emoji",
+      "dictionary",
+      "copilot",
+    },
     providers = {
+      avante = {
+        module = "blink-cmp-avante",
+        name = "Avante",
+        opts = {
+          -- options for blink-cmp-avante
+        },
+      },
       lsp = {
         name = "lsp",
         enabled = true,
@@ -113,6 +130,7 @@ local opts = function(_, opts)
             vim.fn.expand "~/github/dotfiles-latest/neovim/neobean/spell/es.utf-8.add",
           },
           -- --  NOTE: To disable the definitions uncomment this section below
+          --
           --
           -- separate_output = function(output)
           --   local items = {}
