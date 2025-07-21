@@ -12,7 +12,7 @@ return {
     enabled = false,
   },
   -- provider = "deepseek",
-  provider = "copilot",
+  provider = "claude_37",
   mode = "legacy",
   providers = {
     ["claude_37_thinking"] = {
@@ -49,22 +49,17 @@ return {
       display_name = "Claude 3.5 (Haiku)",
       disable_tools = true,
     },
-    -- ["deepseek_coder_v2_lite_instruct_Q5_K_S"] = {
-    --   __inherited_from = "ollama",
-    --   display_name = "DeepSeek Coder V2 Lite Instruct GGUF:Q5_K_S",
-    --   model = "hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF:Q5_K_S",
-    --   disable_tools = true,
-    -- },
-    -- ["deepseek_coder_v2_lite_instruct_IQ4_XS"] = {
-    --   __inherited_from = "ollama",
-    --   display_name = "DeepSeek Coder V2 Lite Instruct GGUF:IQ4_XS",
-    --   model = "hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF:IQ4_XS",
-    --   disable_tools = true,
-    --   max_tokens = 512,
-    --   options = {
-    --     num_ctx = 0,
-    --   },
-    -- },
+    ["copilot-custom"] = {
+      __inherited_from = "copilot",
+      model = "claude-3.7-sonnet",
+      display_name = "Copilot (Claude Sonnet 3.7)",
+      disable_tools = false,
+      pro = {
+        thinking = {
+          type = "disabled",
+        },
+      },
+    },
   },
   file_selector = {
     provider_opts = {

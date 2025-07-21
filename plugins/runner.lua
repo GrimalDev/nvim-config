@@ -1,5 +1,6 @@
 return {
   {
+    -- dir = "~/Code/projects/nvim-plugins/runner",
     "MarcHamamji/runner.nvim",
     dependencies = {
       "nvim-telescope/telescope.nvim",

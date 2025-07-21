@@ -241,10 +241,26 @@ s.general = {
 
               vim.notify("Running " .. filename)
 
-              -- Execute ile and show output in a horizontal split buffer
-              vim.cmd("split | terminal lua " .. filename)
-              vim.cmd "wincmd J" -- Move bottom
-              vim.cmd "resize 15" -- Adjust the size
+              local goal_bufnr = vim.fn.bufadd(filename)
+              if goal_bufnr == -1 then
+                print("Could not find file: " .. filename)
+                return
+              end
+
+              -- Ensure the buffer is loaded
+              if not vim.api.nvim_buf_is_loaded(goal_bufnr) then
+                vim.fn.bufload(goal_bufnr)
+              end
+
+              -- local origin_bufnr = vim.api.nvim_get_current_buf()
+              vim.api.nvim_set_current_buf(goal_bufnr)
+              vim.cmd("lua require('runner').run(" .. goal_bufnr .. ")")
+              -- if in split view, return to origin buffer on the other split
+              -- if vim.fn.winnr "$" > 1 then
+              --   vim.cmd "wincmd h"
+              --   vim.api.nvim_set_current_buf(origin_bufnr)
+              --   vim.cmd "wincmd l"
+              -- end
             end
 
             -- Bind custom action to Enter key
@@ -577,7 +593,7 @@ s.dadbod = {
   },
 }
 
-s.executor = {
+s.runner = {
   n = {
     { "<leader>rr", "<cmd>lua require('runner').run() <CR>", { desc = "Run code of current buffer" } },
     -- {"<leader>rc", "<CMD> :lua require('executor').term_closer()<CR>", { desc = "Close all terminal windows" } },
