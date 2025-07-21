@@ -12,9 +12,42 @@ return {
     enabled = false,
   },
   -- provider = "deepseek",
-  provider = "claude_4",
+  provider = "copilot-gpt41",
   mode = "legacy",
   providers = {
+    ["copilot-gpt41"] = {
+      __inherited_from = "copilot",
+      model = "gpt-4.1",
+      display_name = "Copilot custom (GPT-4.1)",
+      disable_tools = true,
+      pro = {
+        thinking = {
+          type = "disabled",
+        },
+      },
+    },
+    ["copilot-claude4"] = {
+      __inherited_from = "copilot",
+      model = "claude-sonnet-4",
+      display_name = "Copilot custom (Claude Sonnet 4)",
+      disable_tools = true,
+      pro = {
+        thinking = {
+          type = "disabled",
+        },
+      },
+    },
+    ["copilot-claude4-thinking"] = {
+      __inherited_from = "copilot",
+      model = "claude-4-sonnet",
+      display_name = "Copilot custom (Claude Sonnet 4 thinking)",
+      disable_tools = true,
+      pro = {
+        thinking = {
+          type = "enabled",
+        },
+      },
+    },
     ["claude_4_thinking"] = {
       __inherited_from = "claude",
       model = "claude-sonnet-4-20250514",
