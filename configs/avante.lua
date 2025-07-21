@@ -12,7 +12,7 @@ return {
     enabled = false,
   },
   -- provider = "deepseek",
-  provider = "claude_37",
+  provider = "claude_4",
   mode = "legacy",
   providers = {
     ["claude_4_thinking"] = {
