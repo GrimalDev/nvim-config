@@ -15,10 +15,10 @@ return {
   provider = "claude_37",
   mode = "legacy",
   providers = {
-    ["claude_37_thinking"] = {
+    ["claude_4_thinking"] = {
       __inherited_from = "claude",
-      model = "claude-3-7-sonnet-latest",
-      display_name = "Claude 3.7 (Sonnet) with tools",
+      model = "claude-sonnet-4-20250514",
+      display_name = "Claude 4 (Sonnet) with thinking",
       pro = {
         thinking = {
           type = "enabled",
@@ -28,10 +28,10 @@ return {
       },
       disable_tools = true,
     },
-    ["claude_37"] = {
+    ["claude_4"] = {
       __inherited_from = "claude",
-      model = "claude-3-7-sonnet-latest",
-      display_name = "Claude 3.7 (Sonnet)",
+      model = "claude-sonnet-4-20250514",
+      display_name = "Claude 4 (Sonnet)",
       thinking = {
         type = "disabled",
       },
