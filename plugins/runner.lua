@@ -35,6 +35,10 @@ return {
             local helpers = require "runner.handlers.helpers"
             helpers.shell_handler("sh " .. vim.fn.expand "%")(bufnr)
           end,
+          html = function(bufnr)
+            local helpers = require "runner.handlers.helpers"
+            helpers.shell_handler("live-server " .. vim.fn.expand "%")(bufnr)
+          end,
         },
       }
     end,

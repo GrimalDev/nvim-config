@@ -34,6 +34,9 @@ M.base46 = {
   },
 }
 M.ui = {
+  nvdash = {
+    load_on_startup = true, -- ensure nvdash loads properly on neovim start
+  },
   cmp = {
     lspkind_text = true,
     style = "default", -- default/flat_light/flat_dark/atom/atom_colored

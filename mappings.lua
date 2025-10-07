@@ -78,11 +78,6 @@ s.text = {
       { desc = "Move to previous function" },
     },
   },
-
-  c = {
-    { "<C-k>", "<C-p>", { desc = "nav prev " } },
-    { "<C-j>", "<C-n>", { desc = "nav next " } },
-  },
 }
 
 s.harpoon = {
@@ -214,7 +209,7 @@ s.general = {
     { "<leader>mm", "<CMD>lua require('treesj').toggle()<CR>", { desc = "toogle array" } },
 
     {
-      "<leader>rt",
+      "<leader>fr",
       function()
         require("telescope.builtin").find_files {
           find_command = { "fd", "-t", "f", ".", ".run" },
@@ -332,8 +327,6 @@ s.general = {
       { desc = "paste what you overrode with paste" },
     },
     { "<leader>ct", "<CMD> lua require('chatgpt') <CR><CMD> ChatGPT <CR>", { desc = "Open ChatGPT prompts" } },
-
-    { "<tab>", "<C-i>", { desc = "not last position" } },
     {
       "<leader>ra",
       "<CMD>lua require('renamer').rename()<CR>",
@@ -361,6 +354,10 @@ s.general = {
     -- Move selected lines up and down
     { "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" } },
     { "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" } },
+  },
+  c = {
+    { "<C-k>", "<C-p>", { desc = "nav prev " } },
+    { "<C-j>", "<C-n>", { desc = "nav next " } },
   },
 }
 
@@ -490,6 +487,15 @@ s.lsp = {
     { "gd", "<CMD>Telescope lsp_definitions<CR>", { desc = "Go to lsp definitions" } },
     { "gr", "<CMD>Telescope lsp_references<CR>", { desc = "Go to lsp references" } },
   },
+  i = {
+    -- {
+    --   "<C-g>",
+    --   function()
+    --     require("blink.cmp").complete()
+    --   end,
+    --   { desc = "Force LSP function completions" },
+    -- },
+  },
 }
 
 s.session = {
@@ -501,7 +507,7 @@ s.session = {
     },
     {
       "<leader>sn",
-      "<CMD>SessionSave<CR>",
+      "<CMD>AutoSession save<CR>",
       { desc = " New session" },
     },
     -- {
@@ -513,7 +519,7 @@ s.session = {
     -- },
     {
       "<leader>sd",
-      "<CMD>SessionDelete<CR>",
+      "<CMD>AutoSession delete<CR>",
       { desc = " Delete session" },
     },
   },
@@ -523,13 +529,13 @@ s.diagnostics = {
   n = {
     { "<leader>t", "<CMD>Trouble diagnostics toggle<cr>", { desc = "Diagnostics (Trouble)" } },
     { "<leader>tb", "<CMD>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Buffer Diagnostics (Trouble)" } },
-    { "<leader>td", "<CMD>TodoTrouble keywords=TODO,FIX,FIXs.,BUG,TEST,NOTE<cr>", { desc = " Todo/Fix/Fixme" } },
+    { "<leader>td", "<CMD>TodoTrouble keywords=TODO,FIX,BUG,TEST<cr>", { desc = " Todo/Fix/Bug/Test" } },
   },
 }
 
 s.todo = {
   n = {
-    { "<leader>ft", "<CMD>TodoTelescope<cr>", { desc = " Todo/Fix/Fixme" } },
+    { "<leader>ft", "<CMD>TodoTelescope<cr>", { desc = " Todo/Fix/Bug/Test" } },
   },
 }
 
@@ -617,9 +623,9 @@ s.dap = {
     { "<leader>dd", "<CMD>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" } },
     { "<leader>dc", "<CMD>lua require'dapui'.close()<CR>", { desc = "close dapui" } },
     { "<leader>dm", "<CMD>DapContinue<CR>", { desc = "DAP continue" } },
-    { "<down>", "<CMD>DapStepInto<CR>", { desc = "DAP stepInto" } },
-    { "<leader>dk", "<CMD>DapStepOut<CR>", { desc = "DAP Step Out" } },
-    { "<up>", "<CMD>DapStepOver<CR>", { desc = "DAP Step Over" } },
+    { "<leader><down>", "<CMD>DapStepInto<CR>", { desc = "DAP stepInto" } },
+    { "<leader><left>", "<CMD>DapStepOut<CR>", { desc = "DAP Step Out" } },
+    { "<leader><up>", "<CMD>DapStepOver<CR>", { desc = "DAP Step Over" } },
 
     { "<leader>da", "<CMD>lua require('dapui').elements.watches.add()<CR>", { desc = "DAP watcher add" } },
     { "<leader>dr", "<CMD>lua require('dapui').elements.watches.remove()<CR>", { desc = "DAP watcher remove" } },

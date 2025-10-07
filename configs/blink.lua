@@ -41,7 +41,7 @@ local opts = function(_, opts)
         enabled = true,
         module = "blink.cmp.sources.lsp",
         -- kind = "LSP",
-        min_keyword_length = 2,
+        min_keyword_length = 0,
         -- When linking markdown notes, I would get snippets and text in the
         -- suggestions, I want those to show only if there are no LSP
         -- suggestions
@@ -172,6 +172,7 @@ local opts = function(_, opts)
   opts.completion = {
     trigger = {
       show_on_blocked_trigger_characters = {},
+      show_on_insert = true,
     },
     -- accept = {
     --   auto_brackets = {
@@ -240,6 +241,8 @@ local opts = function(_, opts)
     ["<Down>"] = { "select_next", "fallback" },
     ["<C-k>"] = { "select_prev", "fallback" },
     ["<C-j>"] = { "select_next", "fallback" },
+
+    ["<C-g>"] = { "show" },
 
     ["<C-u>"] = { "scroll_documentation_up", "fallback" },
     ["<C-d>"] = { "scroll_documentation_down", "fallback" },
