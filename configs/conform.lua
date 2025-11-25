@@ -20,6 +20,7 @@ return {
     dart = { "dart_format" },
     cpp = { "clang_format" },
     go = { "gofmt" },
+    terraform = { "terraform_fmt" },
     ["_"] = { "trim_whitespace" },
   },
   format_on_save = {
