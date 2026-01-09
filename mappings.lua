@@ -183,7 +183,8 @@ s.general = {
     -- { "<C-j>", "<cmd>NvimTmuxNavigateDown<cr>", { desc = "Window down" } },
     -- { "<C-k>", "<cmd>NvimTmuxNavigateUp<cr>", { desc = "Window up" } },
 
-    { "<A-x>", "<C-w>c", { desc = "Window close" } },
+    { "<A-x>", "<CMD>Bdelete<CR><C-w>c", { desc = "Delete buffer and close the window" } },
+    -- { "<S-A-x>", "<CMD>Bdelete<CR><C-w>c", { desc = "Delete buffer and close the window" } },
 
     { "<A-e>", "<CMD> qa<CR>", { desc = "Exit" } },
 
@@ -595,7 +596,52 @@ s.spectre = {
 
 s.dadbod = {
   n = {
-    { "<leader>db", "<CMD> :DBUIToggle<CR>", { desc = "Toggle Dadbod UI" } },
+    {
+      "<leader>db",
+      function()
+        local cwd = vim.fn.getcwd()
+        local dadbod_buffer_name = cwd .. "/dbui"
+
+        -- Check if dadbod UI buffer exists and is loaded
+        local dadbod_bufnr = vim.fn.bufnr(dadbod_buffer_name)
+        local is_dadbod_open = dadbod_bufnr ~= -1 and vim.api.nvim_buf_is_loaded(dadbod_bufnr)
+
+        if not is_dadbod_open then
+          -- Dadbod is not open, toggle it
+          vim.cmd "DBUIToggle"
+        else
+          -- Dadbod is open, close all buffers/windows not from current working directory
+          local current_buffers = vim.api.nvim_list_bufs()
+          local buffers_to_close = {}
+
+          for _, bufnr in ipairs(current_buffers) do
+            if vim.api.nvim_buf_is_loaded(bufnr) then
+              local buf_name = vim.api.nvim_buf_get_name(bufnr)
+              -- Skip empty buffers and buffers that are in current working directory
+              if buf_name ~= "" and not vim.startswith(buf_name, cwd) then
+                table.insert(buffers_to_close, bufnr)
+              end
+            end
+          end
+
+          -- Close buffers not from current working directory
+          for _, bufnr in ipairs(buffers_to_close) do
+            -- Get all windows showing this buffer
+            local wins = vim.fn.win_findbuf(bufnr)
+            for _, winnr in ipairs(wins) do
+              vim.api.nvim_win_close(winnr, false)
+            end
+            -- Close the buffer if it's still loaded and not modified
+            if vim.api.nvim_buf_is_loaded(bufnr) and not vim.bo[bufnr].modified then
+              vim.api.nvim_buf_delete(bufnr, { force = false })
+            end
+          end
+          -- refresh the dadbod UI
+          vim.cmd "DBUIClose"
+        end
+      end,
+      { desc = "Smart Dadbod UI toggle" },
+    },
   },
 }
 
