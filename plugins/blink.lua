@@ -5,6 +5,5 @@ return {
     "moyiz/blink-emoji.nvim",
     "Kaiser-Yang/blink-cmp-dictionary",
     "giuxtaposition/blink-cmp-copilot",
-    "Kaiser-Yang/blink-cmp-avante",
   },
 }

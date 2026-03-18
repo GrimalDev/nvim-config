@@ -78,6 +78,21 @@ s.text = {
       { desc = "Move to previous function" },
     },
   },
+  v = {
+    {
+      "<leader>i",
+      '"ay:%s/<C-r>a\\V/',
+      { desc = "Substitute in visual selection" },
+    },
+  },
+
+  x = {
+    {
+      "s",
+      "<Plug>(nvim-surround-visual)",
+      { desc = "Add a surrounding pair around the cursor (insert mode)" },
+    },
+  },
 }
 
 s.harpoon = {
@@ -390,6 +405,17 @@ s.git = {
     { "<leader>gs", "<CMD>AdvancedGitSearch<CR>", { desc = "  Advanced Search" } },
     { "<leader>gg", "<CMD>LazyGit<CR>", { desc = "  LazyGit" } },
     {
+      "<leader>gd",
+      function()
+        if next(require("diffview.lib").views) == nil then
+          vim.cmd "DiffviewOpen"
+        else
+          vim.cmd "DiffviewClose"
+        end
+      end,
+      { desc = "Toggle Diffview" },
+    },
+    {
       "<leader>gl",
       function()
         package.loaded.gitsigns.blame_line()
@@ -422,7 +448,6 @@ s.telescope = {
       "<CMD> :Telescope frecency workspace=CWD <CR>",
       { desc = "Find all with frequency order" },
     },
-    { "<leader>o", "<CMD> FzfLua files cwd=~ <CR>", { desc = "Find all" } },
     { "<leader>fw", "<CMD> Telescope live_grep <CR>", { desc = "Live grep" } },
     { "<leader>b", "<CMD> Telescope buffers <CR>", { desc = "Find buffers" } },
     { "<leader>fh", "<CMD> Telescope help_tags <CR>", { desc = "Help page" } },
@@ -649,6 +674,7 @@ s.runner = {
   n = {
     { "<leader>rr", "<cmd>lua require('runner').run() <CR>", { desc = "Run code of current buffer" } },
     -- {"<leader>rc", "<CMD> :lua require('executor').term_closer()<CR>", { desc = "Close all terminal windows" } },
+    { "<leader>rh", "<cmd> Rest run <CR>", { desc = "run http on cursor" } },
   },
 }
 
@@ -682,8 +708,8 @@ s.dap = {
 s.colorutils = {
   n = {
     { "<leader>cp", "<CMD> Colortils <CR>", { desc = "Color picker" } },
-    { "<leader>cl", "<CMD> Colortils lighten <CR>", { desc = "Color lighten" } },
-    { "<leader>cd", "<CMD> Colortils darken <CR>", { desc = "Color darken" } },
+    -- { "<leader>cl", "<CMD> Colortils lighten <CR>", { desc = "Color lighten" } },
+    -- { "<leader>cd", "<CMD> Colortils darken <CR>", { desc = "Color darken" } },
   },
 }
 
@@ -696,6 +722,87 @@ s.fold = {
     { "<leader>h", "zMzAzz", { desc = "Close all folds but current one" } },
     { "[", "zj", { desc = "Move to next fold", noremap = true, nowait = true } },
     { "]", "zk", { desc = "Move to previous fold", noremap = true, nowait = true } },
+  },
+}
+
+s.opencode = {
+  n = {
+    {
+      "<leader>oa",
+      function()
+        require("opencode").ask("@this: ", { submit = true })
+      end,
+      { desc = "Ask opencode…" },
+    },
+    {
+      "<leader>oe",
+      function()
+        require("opencode").select()
+      end,
+      { desc = "Execute opencode action…" },
+    },
+    {
+      "<leader>o",
+      function()
+        require("opencode").toggle()
+      end,
+      { desc = "Toggle opencode" },
+    },
+    {
+      "go",
+      function()
+        return require("opencode").operator "@this "
+      end,
+      { desc = "Add range to opencode", expr = true },
+    },
+    {
+      "<S-C-u>",
+      function()
+        require("opencode").command "session.half.page.up"
+      end,
+      { desc = "Scroll opencode up" },
+    },
+    {
+      "<S-C-d>",
+      function()
+        require("opencode").command "session.half.page.down"
+      end,
+      { desc = "Scroll opencode down" },
+    },
+    { "+", "<C-a>", { desc = "Increment under cursor", noremap = true } },
+    { "-", "<C-x>", { desc = "Decrement under cursor", noremap = true } },
+  },
+  x = {
+    {
+      "<C-a>",
+      function()
+        require("opencode").ask("@this: ", { submit = true })
+      end,
+      { desc = "Ask opencode…" },
+    },
+    {
+      "<C-x>",
+      function()
+        require("opencode").select()
+      end,
+      { desc = "Execute opencode action…" },
+    },
+    {
+      "go",
+      function()
+        return require("opencode").operator "@this "
+      end,
+      { desc = "Add range to opencode", expr = true },
+    },
+  },
+  t = {
+    {
+      "<C-.>",
+      function()
+        require("opencode").toggle()
+      end,
+      { desc = "Toggle opencode" },
+    },
   },
 }
 

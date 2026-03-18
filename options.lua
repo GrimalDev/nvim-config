@@ -84,7 +84,7 @@ local folding_blacklist = {
   "TelescopePrompt",
   "mason",
   "lazy",
-  "Avante",
+  "opencode",
   "dbui",
   "dbout",
   "cmp",

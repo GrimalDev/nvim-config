@@ -21,14 +21,14 @@ M.base46 = {
     ["@comment"] = { fg = "#717276" },
 
     -- Diff
-    ["DiffChange"] = { fg = "NONE", bg = "NONE" },
-    ["DiffModified"] = { fg = "NONE", bg = "NONE" },
-    ["DiffText"] = { fg = "NONE", bg = "#2B9128" },
-    ["DiffAdd"] = { fg = "NONE", bg = "#2B9128" },
-    ["DiffAdded"] = { fg = "NONE", bg = "#2B9128" },
-    ["DiffDelete"] = { fg = "NONE", bg = "blue" },
-    ["DiffRemoved"] = { fg = "NONE", bg = "#B22126" },
-    ["DiffChangeDelete"] = { fg = "NONE", bg = "#B22126" },
+    -- ["DiffChange"] = { fg = "NONE", bg = "NONE" },
+    -- ["DiffModified"] = { fg = "NONE", bg = "NONE" },
+    -- ["DiffText"] = { fg = "NONE", bg = "#2B9128" },
+    -- ["DiffAdd"] = { fg = "NONE", bg = "#2B9128" },
+    -- ["DiffAdded"] = { fg = "NONE", bg = "#2B9128" },
+    -- ["DiffDelete"] = { fg = "NONE", bg = "blue" },
+    -- ["DiffRemoved"] = { fg = "NONE", bg = "#B22126" },
+    -- ["DiffChangeDelete"] = { fg = "NONE", bg = "#B22126" },
 
     -- LSP Doc
   },

@@ -44,7 +44,7 @@ mv main-init.lua ../init.lua
 
 ### ai
 
-- [yetone/avante.nvim](https://dotfyle.com/plugins/yetone/avante.nvim)
+- [nickjvandyke/opencode.nvim](https://github.com/nickjvandyke/opencode.nvim?tab=readme-ov-file)
 
 ### color
 

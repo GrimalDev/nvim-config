@@ -18,7 +18,6 @@ local opts = function(_, opts)
   --  NOTE: Merge custom sources with the existing ones from nvchad
   opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
     default = {
-      "avante",
       "lsp",
       "path",
       "snippets",
@@ -29,13 +28,6 @@ local opts = function(_, opts)
       "copilot",
     },
     providers = {
-      avante = {
-        module = "blink-cmp-avante",
-        name = "Avante",
-        opts = {
-          -- options for blink-cmp-avante
-        },
-      },
       lsp = {
         name = "lsp",
         enabled = true,

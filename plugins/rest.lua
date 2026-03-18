@@ -1,5 +1,6 @@
 return {
   "rest-nvim/rest.nvim",
+  cmd = { "Rest" },
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-telescope/telescope.nvim",

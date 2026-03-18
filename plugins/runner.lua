@@ -39,6 +39,9 @@ return {
             local helpers = require "runner.handlers.helpers"
             helpers.shell_handler("live-server " .. vim.fn.expand "%")(bufnr)
           end,
+          markdown = function(_)
+            vim.cmd "MarkdownPreviewToggle"
+          end,
         },
       }
     end,

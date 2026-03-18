@@ -16,7 +16,7 @@ return {
           -- => both will result in calling `:GBrowse commit`
 
           -- fugitive or diffview
-          diff_plugin = "fugitive",
+          diff_plugin = "diffview",
           -- customize git in previewer
           -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
           git_flags = {},
@@ -56,8 +56,6 @@ return {
   dependencies = {
     "nvim-telescope/telescope.nvim",
     -- to show diff splits and open commits in browser
-    "tpope/vim-fugitive",
-    -- to open commits in browser with fugitive
     "tpope/vim-rhubarb",
   },
 }
