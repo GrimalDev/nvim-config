@@ -4,6 +4,6 @@ return {
   dependencies = {
     "moyiz/blink-emoji.nvim",
     "Kaiser-Yang/blink-cmp-dictionary",
-    "giuxtaposition/blink-cmp-copilot",
+    "fang2hou/blink-copilot",
   },
 }

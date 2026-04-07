@@ -115,42 +115,38 @@ local opts = function(_, opts)
           --
           -- Do not specify a file, just the path, and in the path you need to
           -- have your .txt files
-          dictionary_directories = { vim.fn.expand "~/github/dotfiles-latest/dictionaries" },
+          -- dictionary_directories = { vim.fn.expand "~/github/dotfiles-latest/dictionaries" },
           -- Notice I'm also adding the words I add to the spell dictionary
           dictionary_files = {
-            vim.fn.expand "~/github/dotfiles-latest/neovim/neobean/spell/en.utf-8.add",
-            vim.fn.expand "~/github/dotfiles-latest/neovim/neobean/spell/es.utf-8.add",
+            vim.fn.expand "~/.local/share/english-words/words.txt",
           },
           -- --  NOTE: To disable the definitions uncomment this section below
           --
           --
-          -- separate_output = function(output)
-          --   local items = {}
-          --   for line in output:gmatch("[^\r\n]+") do
-          --     table.insert(items, {
-          --       label = line,
-          --       insert_text = line,
-          --       documentation = nil,
-          --     })
-          --   end
-          --   return items
-          -- end,
+          separate_output = function(output)
+            local items = {}
+            for line in output:gmatch "[^\r\n]+" do
+              table.insert(items, {
+                label = line,
+                insert_text = line,
+                documentation = nil,
+              })
+            end
+            return items
+          end,
         },
       },
-      -- Third class citizen mf always talking shit
       copilot = {
         name = "copilot",
         enabled = true,
-        module = "blink-cmp-copilot",
+        module = "blink-copilot",
         -- kind = "Copilot",
         min_keyword_length = 0,
         score_offset = 50, -- the higher the number, the higher the priority
         async = true,
         override = {
-          get_trigger_characters = function(self)
-            local trigger_characters = self:get_trigger_characters()
-            vim.list_extend(trigger_characters, { "\n", "\t", " " })
-            return trigger_characters
+          get_trigger_characters = function(_)
+            return { "\n", "\t", " " }
           end,
         },
       },
