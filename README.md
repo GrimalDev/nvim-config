@@ -13,8 +13,9 @@
 - [Everforest](https://github.com/sainnhe/everforest) theme
 - Partially Transparent Background
 
-![image](https://raw.githubusercontent.com/GrimalDev/nvim-config/refs/heads/main/images/SCR-20250520-jrtw.png)
-![image](https://raw.githubusercontent.com/GrimalDev/nvim-config/refs/heads/main/images/SCR-20250520-jnxd.png)
+![image](https://raw.githubusercontent.com/GrimalDev/nvim-config/refs/heads/main/images/SCR-20260429-jjoj.png)
+![image](https://raw.githubusercontent.com/GrimalDev/nvim-config/refs/heads/main/images/SCR-20260429-jjgg.png)
+![image](https://raw.githubusercontent.com/GrimalDev/nvim-config/refs/heads/main/images/SCR-20260429-jjif.png)
 
 ## Install Instructions
 
