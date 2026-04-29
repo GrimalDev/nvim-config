@@ -57,8 +57,12 @@ mv main-init.lua ../init.lua
 
 ### completion
 
-- [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
+- [Saghen/blink.cmp](https://dotfyle.com/plugins/Saghen/blink.cmp)
 - [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
+
+### competitive-programming
+
+- [kawre/leetcode.nvim](https://dotfyle.com/plugins/kawre/leetcode.nvim)
 
 ### debugging
 
@@ -81,6 +85,7 @@ mv main-init.lua ../init.lua
 
 ### file-explorer
 
+- [mikavilpas/yazi.nvim](https://dotfyle.com/plugins/mikavilpas/yazi.nvim)
 - [nvim-tree/nvim-tree.lua](https://dotfyle.com/plugins/nvim-tree/nvim-tree.lua)
 
 ### formatting
@@ -149,6 +154,7 @@ mv main-init.lua ../init.lua
 - [rcarriga/nvim-notify](https://dotfyle.com/plugins/rcarriga/nvim-notify)
 - [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
 - [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
+- [rest-nvim/rest.nvim](https://dotfyle.com/plugins/rest-nvim/rest.nvim)
 
 ## Language Servers
 
