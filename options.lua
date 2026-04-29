@@ -8,38 +8,64 @@ require "nvchad.options"
 function HighlightedFoldtext()
   local pos = vim.v.foldstart
   local line = vim.api.nvim_buf_get_lines(0, pos - 1, pos, false)[1]
-  local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
-  local parser = vim.treesitter.get_parser(0, lang)
-  local query = vim.treesitter.query.get(parser:lang(), "highlights")
-
-  if query == nil then
+  if not line then
     return vim.fn.foldtext()
   end
 
-  local tree = parser:parse({ pos - 1, pos })[1]
-  local result = {}
+  local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+  if not lang then
+    return vim.fn.foldtext()
+  end
 
-  local line_pos = 0
+  local parser_ok, parser = pcall(vim.treesitter.get_parser, 0, lang)
+  if not parser_ok or not parser then
+    return vim.fn.foldtext()
+  end
 
-  local prev_range = nil
+  local query_ok, query = pcall(vim.treesitter.query.get, parser:lang(), "highlights")
 
-  for id, node, _ in query:iter_captures(tree:root(), 0, pos - 1, pos) do
-    local name = query.captures[id]
-    local start_row, start_col, end_row, end_col = node:range()
-    if start_row == pos - 1 and end_row == pos - 1 then
-      local range = { start_col, end_col }
-      if start_col > line_pos then
-        table.insert(result, { line:sub(line_pos + 1, start_col), "Folded" })
+  if not query_ok or query == nil then
+    return vim.fn.foldtext()
+  end
+
+  local parse_ok, trees = pcall(parser.parse, parser, { pos - 1, pos })
+  local tree = parse_ok and trees and trees[1] or nil
+  if not tree then
+    return vim.fn.foldtext()
+  end
+
+  local ok, result = pcall(function()
+    local fold_chunks = {}
+    local line_pos = 0
+    local prev_range = nil
+
+    for id, node, _ in query:iter_captures(tree:root(), 0, pos - 1, pos) do
+      if node and type(node.range) == "function" then
+        local name = query.captures[id]
+        local start_row, start_col, end_row, end_col = node:range()
+        if start_row == pos - 1 and end_row == pos - 1 then
+          local range = { start_col, end_col }
+          if start_col > line_pos then
+            table.insert(fold_chunks, { line:sub(line_pos + 1, start_col), "Folded" })
+          end
+          line_pos = end_col
+
+          local text = vim.treesitter.get_node_text(node, 0)
+          if prev_range ~= nil and range[1] == prev_range[1] and range[2] == prev_range[2] then
+            fold_chunks[#fold_chunks] = { text, "@" .. name }
+          else
+            table.insert(fold_chunks, { text, "@" .. name })
+          end
+          prev_range = range
+        end
       end
-      line_pos = end_col
-      local text = vim.treesitter.get_node_text(node, 0)
-      if prev_range ~= nil and range[1] == prev_range[1] and range[2] == prev_range[2] then
-        result[#result] = { text, "@" .. name }
-      else
-        table.insert(result, { text, "@" .. name })
-      end
-      prev_range = range
     end
+
+    return fold_chunks
+  end)
+
+  if not ok then
+    return vim.fn.foldtext()
   end
 
   return result
